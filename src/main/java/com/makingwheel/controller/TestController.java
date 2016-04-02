@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/test")
 public class TestController {
 
-	@RequestMapping(value = "test.do" , method = RequestMethod.GET)
+	@RequestMapping(value = "/test.do" , method = RequestMethod.GET)
 	public ModelAndView test(ModelMap model){
 		return new ModelAndView("/test" , model);
 	}
