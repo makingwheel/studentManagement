@@ -9,7 +9,7 @@
 	<!-- 指定另一个配置的路径 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/*.xml</param-value>
+		<param-value>/WEB-INF/classes/configure/*.xml</param-value>
 	</context-param>
 
 	<!-- 加载applicationContext.xml -->

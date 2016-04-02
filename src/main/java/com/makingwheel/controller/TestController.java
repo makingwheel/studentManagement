@@ -1,4 +1,4 @@
-package com.grg.controller;
+package com.makingwheel.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
