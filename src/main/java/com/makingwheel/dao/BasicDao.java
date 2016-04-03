@@ -17,8 +17,9 @@ public class BasicDao<T> {
 	
 	@SuppressWarnings("unchecked")
 	public BasicDao() {
-		ParameterizedType parameterizedType = (ParameterizedType)this.getClass().getGenericSuperclass(); 
-		entityClass= (Class<T>)(parameterizedType.getActualTypeArguments()[0]); 
+		ParameterizedType parameterizedType = 
+				(ParameterizedType)this.getClass().getGenericSuperclass(); 
+		entityClass = (Class<T>)(parameterizedType.getActualTypeArguments()[0]); 
 	}
 
 	@Autowired
