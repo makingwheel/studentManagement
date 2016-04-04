@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -64,5 +65,27 @@ public class BasicDao<T> {
 		@SuppressWarnings("unchecked")
 		List<T> list = criteria.list();
 		return Optional.ofNullable(list);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Optional<List<T>> queryPage(final QueryParameters queryParameters , final String hql , final Object... values) {
+		return Optional.ofNullable(
+				hibernateTemplate.execute(session ->{
+					Query query = session.createQuery(hql);
+					query.setParameter(0, values);
+					if (values != null) {
+						for (int i = 0, length = values.length; i < length; i++) {
+							query.setParameter(i, values[i]);
+						}
+					}
+					query.setFirstResult(queryParameters.getFirstResult());
+					query.setMaxResults(queryParameters.getLimit());
+					return query.list();
+				})
+		);
+	}
+	
+	public Optional<List<?>> query(String hql , Object... values){
+		return Optional.ofNullable(hibernateTemplate.find(hql, values));
 	}
 }
