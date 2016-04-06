@@ -14,6 +14,12 @@ import com.makingwheel.common.QueryParameters;
 
 public class BasicDao<T> {
 	
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	private Class<T> entityClass;
 	
 	@SuppressWarnings("unchecked")
@@ -22,12 +28,6 @@ public class BasicDao<T> {
 				(ParameterizedType)this.getClass().getGenericSuperclass(); 
 		entityClass = (Class<T>)(parameterizedType.getActualTypeArguments()[0]); 
 	}
-
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	public T save(T t){
 		hibernateTemplate.save(t);
@@ -85,7 +85,7 @@ public class BasicDao<T> {
 		);
 	}
 	
-	public Optional<List<?>> query(String hql , Object... values){
+	public Optional<List<?>> query(String hql, Object... values){
 		return Optional.ofNullable(hibernateTemplate.find(hql, values));
 	}
 }
