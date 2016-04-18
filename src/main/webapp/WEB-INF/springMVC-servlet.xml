@@ -31,7 +31,7 @@
     </bean>
     
     <!-- 加载静态资源 -->
-    <mvc:resources location="/WEB-INF/view/image/" mapping="/image/**"/>  
+    <mvc:resources location="/WEB-INF/view/image/" mapping="/images/**"/>  
     <mvc:resources location="/WEB-INF/view/js/" mapping="/js/**"/>  
     <mvc:resources location="/WEB-INF/view/css/" mapping="/css/**"/>
 </beans>

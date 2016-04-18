@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+.sm_contain {
+	height: 650px;
+	background: #fff url(../images/bg.png) no-repeat right bottom;
+}
