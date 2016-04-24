@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+<link rel="icon" href="/studentManagement/resources/images/sm.ico" >
 <link href="/studentManagement/resources/css/lib/bootstrap/bootstrap.css" rel="stylesheet" />
 <link href="/studentManagement/resources/css/lib/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
-<!-- <link href="/studentManagement/resources/css/online.css" rel="stylesheet" /> -->
 <link href="/studentManagement/resources/css/lib/dashboard/dashboard.css" rel="stylesheet">
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -1,10 +1,7 @@
 $(function(){
 	console.log("rootPath : " + $.rootPath);
-	
-	
-	
 	$('#notice').bootstrapTable({
-		url: "/studentManagement/student/home/list.do",
+		url: $.rootPath + "student/home/list.do",
 		pagination: true,
 		sidePagination: "server",
 		columns: [{
