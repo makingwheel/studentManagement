@@ -34,13 +34,13 @@ public class Student implements Serializable {
 	@Column(name = "nation")
 	private String nation;
 	
-	@Column(name = "palce_of_origin")
+	@Column(name = "place_of_origin")
 	private String placeOfOrigin;
 	
 	@Column(name = "address")
 	private String address;
 	
-	@Column(name = "qqq")
+	@Column(name = "qq")
 	private String qq;
 	
 	@Column(name = "tel")
