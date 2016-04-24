@@ -18,7 +18,6 @@
                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     
-    <!-- 默认的注解映射的支持 -->
     <mvc:annotation-driven />
     
     <!-- 视图解释类 -->
@@ -31,7 +30,8 @@
     </bean>
     
     <!-- 加载静态资源 -->
-    <mvc:resources location="/WEB-INF/view/image/" mapping="/images/**"/>  
-    <mvc:resources location="/WEB-INF/view/js/" mapping="/js/**"/>  
-    <mvc:resources location="/WEB-INF/view/css/" mapping="/css/**"/>
+    <!-- <mvc:resources location="/resources/images/**" mapping="/images/**"/>  
+    <mvc:resources location="/resources/js/**" mapping="/js/**"/>  
+    <mvc:resources location="/resources/css/**" mapping="/css/**"/> 
+   <mvc:resources location="/resources/" mapping="/resources/**"/>-->
 </beans>

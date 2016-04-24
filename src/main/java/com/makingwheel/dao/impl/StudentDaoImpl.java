@@ -7,7 +7,6 @@ import com.makingwheel.dao.StudentDao;
 import com.makingwheel.dao.entity.Student;
 
 @Repository
-public class StudentDaoImpl extends BasicDao<Student> implements StudentDao{
-	
-	
+public class StudentDaoImpl extends BasicDao<Student>implements StudentDao {
+
 }
