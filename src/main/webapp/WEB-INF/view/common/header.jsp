@@ -17,3 +17,4 @@
 <script src="/studentManagement/resources/js/lib/dashboard/holder.min.js"></script>
 <script src="/studentManagement/resources/js/lib/dashboard/ie10-viewport-bug-workaround.js"></script>
 <script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>

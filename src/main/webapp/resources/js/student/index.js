@@ -1,4 +1,4 @@
-
+$(function(){
 	$('#notice').bootstrapTable({
 		url: "/studentManagement/student/home/list.do",
 		pagination: true,
@@ -11,9 +11,19 @@
 			title: '内容'
 		},{
 			field: 'modifyDate',
-			title: '发布日期'
+			title: '发布日期',
+			formatter:function(value,row,index){
+				var date = new Date(value);
+				if(value){
+					return date.getFullYear();
+				}
+				return value;
+			}
 		}],
 		queryParams: function(params) {
 			return params;
 		}
 	});
+});
+
+

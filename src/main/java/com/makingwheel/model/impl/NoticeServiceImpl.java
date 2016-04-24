@@ -3,20 +3,21 @@ package com.makingwheel.model.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.makingwheel.dao.NoticeDao;
 import com.makingwheel.dao.entity.Notice;
+import com.makingwheel.dao.impl.NoticeDaoImpl;
 import com.makingwheel.model.NoticeService;
 
+@Service
 public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
-	private NoticeDao noticeDao;
+	private NoticeDaoImpl noticeDaoImpl;
 	
 	@Override
 	public List<Notice> queryByStatus(Integer status) {
-		hibernateTemplate.get(Notice.class, 1);
-		return null;
+		return noticeDaoImpl.queryByStatus(status);
 	}
 
 }

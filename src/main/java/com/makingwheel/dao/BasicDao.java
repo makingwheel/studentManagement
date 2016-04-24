@@ -15,7 +15,7 @@ import com.makingwheel.common.QueryParameters;
 public class BasicDao<T> {
 	
 	@Autowired
-	private HibernateTemplate hibernateTemplate;
+	protected HibernateTemplate hibernateTemplate;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
