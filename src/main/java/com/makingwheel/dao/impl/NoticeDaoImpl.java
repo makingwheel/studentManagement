@@ -16,6 +16,7 @@ public class NoticeDaoImpl extends BasicDao<Notice>implements NoticeDao {
 	public List<Notice> queryByStatus(Integer status) {
 		StringBuffer hql = new StringBuffer("from Notice n ");
 		hql.append("where n.status = ? ");
+		hql.append("order by n.modifyDate desc ");
 		return (List<Notice>) hibernateTemplate.find(hql.toString(), status);
 	}
 

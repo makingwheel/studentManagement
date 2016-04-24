@@ -14,8 +14,14 @@ $(function(){
 			title: '发布日期',
 			formatter:function(value,row,index){
 				var date = new Date(value);
+					year = null,
+					month = null,
+					day = null;
 				if(value){
-					return date.getFullYear();
+					year = date.getFullYear();
+					month = (month = date.getMonth() + 1) < 10 ? '0'+month : month;
+					day = (day = date.getDate()) < 10 ? '0'+day : day;
+					return year + '-' + month + '-' + day;
 				}
 				return value;
 			}
