@@ -1,6 +1,8 @@
 
 	$('#notice').bootstrapTable({
 		url: "/studentManagement/student/home/list.do",
+		pagination: true,
+		sidePagination: "server",
 		columns: [{
 			field: 'title',
 			title: '标题'
