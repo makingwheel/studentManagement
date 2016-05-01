@@ -29,8 +29,8 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<%-- <li class="active"><a href="<c:url value="/student/home/index.do" />">首页</a></li> --%>
-					<li><a href="<c:url value="/student/home/index.do" />">首页</a></li>
+					 <li class="active"><a href="<c:url value="/student/home/index.do" />">首页</a></li>
+					<%-- <li><a href="<c:url value="/student/home/index.do" />">首页</a></li> --%>
 					<li><a href="<c:url value="/student/basicMessage/index.do" />">基本信息</a></li> 
 					<li><a href="<c:url value="/student/timetable/index.do" />">课表查询</a></li> 
 					<li><a href="<c:url value="/student/achievement/index.do" />">成绩查询</a></li>
