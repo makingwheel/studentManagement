@@ -23,13 +23,13 @@ public class SignController {
 	@Autowired
 	private SignService signService;
 	
-	@RequestMapping(value = "on.do", method = RequestMethod.GET)
+	@RequestMapping(value = "on.op", method = RequestMethod.GET)
 	public ModelAndView signOn(ModelMap model) {
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "in.do" , method = RequestMethod.POST)
+	@RequestMapping(value = "in.op" , method = RequestMethod.POST)
 	public ModelAndView signIn(ModelMap model, UserVo userVo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		boolean result = signService.checkUser(userVo);

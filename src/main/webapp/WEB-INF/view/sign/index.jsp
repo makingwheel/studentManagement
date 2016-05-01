@@ -12,7 +12,7 @@
 <body>
 	<div class="login">
 		<h1>欢迎您</h1>
-		<form id="signOnForm" method="post" action="<c:url value="/sign/in.do" />">
+		<form id="signOnForm" method="post" action="<c:url value="/sign/in.op" />">
 			<input type="text" id="count"  name="count" placeholder="账号" /> 
 			<input type="password" id="password" name="password" placeholder="密码" />
 			<div>
