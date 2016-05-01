@@ -19,7 +19,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="">您好: <em>张三</em></a></li>
+					<li><a href="">您好: <em><c:out value="${user.name}" /></em></a></li>
 					<li><a href="">退出</a></li>
 				</ul>
 			</div>

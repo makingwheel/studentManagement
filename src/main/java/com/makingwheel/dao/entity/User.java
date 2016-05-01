@@ -12,28 +12,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "sm_user")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "count")
 	private String count;
-	
+
+	@Column(name = "name")
+	private String name;
+
 	@Column(name = "type")
 	private Integer type;
-	
-	@Column(name ="password")
+
+	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "status")
 	private Integer status;
-	
+
 	@Column(name = "last_login")
 	private Date lastLogin;
-	
+
 	@Column(name = "last_modify")
 	private Date lastModify;
 
@@ -43,6 +46,10 @@ public class User implements Serializable{
 
 	public String getCount() {
 		return count;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public Integer getType() {
@@ -73,6 +80,10 @@ public class User implements Serializable{
 		this.count = count;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public void setType(Integer type) {
 		this.type = type;
 	}
@@ -92,4 +103,5 @@ public class User implements Serializable{
 	public void setLastModify(Date lastModify) {
 		this.lastModify = lastModify;
 	}
+
 }
