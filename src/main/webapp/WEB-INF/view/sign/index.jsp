@@ -11,12 +11,14 @@
 <body>
 	<div class="login">
 		<h1>欢迎您</h1>
-		<form method="post">
-			<input type="text" name="u" placeholder="用户名"/>
-			<input type="password" name="p" placeholder="密码"/>
+		<form id="signOnForm" method="post">
+			<input type="text" name="count" placeholder="用户名"/>
+			<input type="password" name="password" placeholder="密码"/>
+			<div>
 			<label class="radio_label"><input type="radio" id="type" name="type" value="" class="radio"/>学生</label>
 			<label class="radio_label"><input type="radio" id="type" name="type" value="" class="radio"/>教师</label>
 			<label class="radio_label"><input type="radio" id="type" name="type" value="" class="radio"/>管理员</label>
+			</div>
 			<button type="submit" class="btn btn-primary btn-block btn-large">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
 		</form>
 	</div>
@@ -25,4 +27,5 @@
 <script src="/studentManagement/resources/js/lib/jquery-validate/jquery.validate.min.js"></script>
 <script src="/studentManagement/resources/js/lib/jquery-validate/additional-methods.min.js"></script>
 <script src="/studentManagement/resources/js/lib/jquery-validate/localization/messages_zh.min.js"></script>
+<script src="/studentManagement/resources/js/sign/signon.js"></script>
 </html>
