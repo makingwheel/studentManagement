@@ -38,6 +38,7 @@ public class SignController {
 				userVo.setName(user.getName());
 			});
 			session.setAttribute("user", userVo);
+			model.put("type", userVo.getType());
 		}
 		model.put(SUCCESS, result);
 		return new ModelAndView(new MappingJackson2JsonView(), model);

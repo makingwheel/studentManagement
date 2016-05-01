@@ -18,3 +18,4 @@
 <script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table.min.js"></script>
 <script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
 <script src="/studentManagement/resources/js/common/getPageRoot.js"></script>
+<script src="/studentManagement/resources/js/common/setMenuHighlight.js"></script>

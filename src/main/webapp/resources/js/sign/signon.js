@@ -18,6 +18,12 @@ $(function(){
 		}
 	});
 	
+	var type_url = {
+		0 : '',
+		1 : '',
+		2 : $.rootPath + 'student/home/index.do'
+	}
+	
 	$('#signOn').on('click',function(){
 		var $signError = $('#signon-error');
 		if($signError.length === 0){
@@ -30,7 +36,7 @@ $(function(){
 					if(data.success){
 						$signError.html('');
 						$signError.hide();
-						window.location.href = $.rootPath + "student/home/index.do";
+						window.location.href = type_url[data.type];
 					} else {
 						$signError.html('账号或密码错误，请重新输入！！！');
 						$signError.show();
