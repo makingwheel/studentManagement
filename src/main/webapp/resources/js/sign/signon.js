@@ -36,7 +36,7 @@ $(function(){
 					if(data.success){
 						$signError.html('');
 						$signError.hide();
-						window.location.href = type_url[data.type];
+						window.location.href = type_url[data.user.type];
 					} else {
 						$signError.html('账号或密码错误，请重新输入！！！');
 						$signError.show();

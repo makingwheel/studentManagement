@@ -13,9 +13,9 @@ import com.makingwheel.controller.sign.UserVo;
 import com.makingwheel.dao.entity.Student;
 import com.makingwheel.model.StudentService;
 
-@SessionAttributes({"user"})
 @Controller
 @RequestMapping(value = "/student/basicMessage/")
+@SessionAttributes("user")
 public class BasicMessageController {
 
 	private static final String BASIC_PATH = "/student/basicMessage/";
@@ -26,8 +26,7 @@ public class BasicMessageController {
 	
 	
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
-//	public ModelAndView index(ModelMap model, Long id){
-	public ModelAndView index(ModelMap model, @ModelAttribute UserVo user){
+	public ModelAndView index(ModelMap model, @ModelAttribute(value = "user") UserVo user){
 		Long id = 1L;
 		model.put("student", studentServiceImpl.find(id).orElse(new Student()));
 		return new ModelAndView(BASIC_PATH + "index", model);
