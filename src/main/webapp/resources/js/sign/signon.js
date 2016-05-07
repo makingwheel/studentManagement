@@ -19,8 +19,8 @@ $(function(){
 	});
 	
 	var type_url = {
-		0 : '',
-		1 : '',
+		0 : $.rootPath + 'admin/home/index.do',
+		1 : $.rootPath + 'teacher/home/index.do',
 		2 : $.rootPath + 'student/home/index.do'
 	}
 	

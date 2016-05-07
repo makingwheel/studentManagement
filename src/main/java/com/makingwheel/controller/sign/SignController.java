@@ -34,9 +34,7 @@ public class SignController {
 		HttpSession session = request.getSession();
 		boolean result = signService.checkUser(userVo);
 		if (result) {
-			signService.queryByUserVo(userVo).ifPresent(user ->{
-				userVo.setName(user.getName());
-			});
+			signService.queryByUserVo(userVo).ifPresent(user -> userVo.setName(user.getName()));
 			session.setAttribute("user", userVo);
 			model.put("type", userVo.getType());
 		}

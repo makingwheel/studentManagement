@@ -29,11 +29,24 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul id="menuContain" class="nav nav-sidebar">
-					 <li class="active"><a href="<c:url value="/student/home/index.do" />">首页</a></li>
-					<%-- <li><a href="<c:url value="/student/home/index.do" />">首页</a></li> --%>
-					<li><a href="<c:url value="/student/basicMessage/index.do" />">基本信息</a></li> 
-					<li><a href="<c:url value="/student/timetable/index.do" />">课表查询</a></li> 
-					<li><a href="<c:url value="/student/achievement/index.do" />">成绩查询</a></li>
+					<c:if test="${user.type eq 0 }">
+						<li><a href="<c:url value="" />">首页</a></li>
+						<li><a href="<c:url value="" />">学生管理</a></li> 
+						<li><a href="<c:url value="" />">教师管理</a></li> 
+						<li><a href="<c:url value="" />">发布信息</a></li>
+					</c:if>
+					<c:if test="${user.type eq 1 }">
+						<li><a href="<c:url value="" />">首页</a></li>
+						<li><a href="<c:url value="" />">基本信息</a></li> 
+						<li><a href="<c:url value="" />">课程管理</a></li> 
+						<li><a href="<c:url value="" />">成绩公布</a></li>
+					</c:if>
+					<c:if test="${user.type eq 2 }">
+						<li><a href="<c:url value="/student/home/index.do" />">首页</a></li>
+						<li><a href="<c:url value="/student/basicMessage/index.do" />">基本信息</a></li> 
+						<li><a href="<c:url value="/student/timetable/index.do" />">课表查询</a></li> 
+						<li><a href="<c:url value="/student/achievement/index.do" />">成绩查询</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
