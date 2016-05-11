@@ -34,6 +34,7 @@ public class SignController {
 	public ModelAndView signIn(ModelMap model, UserVo userVo, HttpServletRequest request) {
 		if (signService.checkUser(userVo)) {
 			signService.queryByUserVo(userVo).ifPresent(user -> userVo.setName(user.getName()));
+			userVo.setPassword("");
 			model.addAttribute("user", userVo);
 			model.put(SUCCESS, true);
 		}

@@ -19,16 +19,13 @@ import com.makingwheel.model.StudentService;
 public class BasicMessageController {
 
 	private static final String BASIC_PATH = "/student/basicMessage/";
-	
+
 	@Autowired
 	private StudentService studentServiceImpl;
-	
-	
-	
+
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
-	public ModelAndView index(ModelMap model, @ModelAttribute(value = "user") UserVo user){
-		Long id = 1L;
-		model.put("student", studentServiceImpl.find(id).orElse(new Student()));
+	public ModelAndView index(ModelMap model, @ModelAttribute(value = "user") UserVo user) {
+		model.put("student", studentServiceImpl.findByCount(user.getCount()).orElse(new Student()));
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.makingwheel.common.PageResult;
+
 @Controller
 @RequestMapping(value = "/student/timetable/")
 public class TimetableController {
@@ -14,5 +16,9 @@ public class TimetableController {
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model){
 		return new ModelAndView(BASIC_PATH + "index" , model);
+	}
+	
+	public PageResult list(ModelMap model){
+		return new PageResult();
 	}
 }
