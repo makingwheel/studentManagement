@@ -2,8 +2,8 @@ package com.makingwheel.model;
 
 import java.util.Optional;
 
-import com.makingwheel.controller.sign.UserVo;
 import com.makingwheel.dao.entity.User;
+import com.makingwheel.model.vo.UserVo;
 
 public interface SignService {
 

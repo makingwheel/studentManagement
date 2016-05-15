@@ -11,28 +11,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "sm_time_teacher_course")
-public class TimeTeacherCourse implements Serializable{
+public class TimeTeacherCourse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "teacher_course_id")
 	private Long teacherCourseId;
-	
+
 	@Column(name = "week")
 	private Integer week;
-	
+
 	@Column(name = "node")
 	private Integer node;
-	
+
 	@Column(name = "begin_week")
 	private Integer beginWeek;
-	
+
 	@Column(name = "end_week")
 	private Integer endWeek;
-	
+
+	@Column(name = "place")
+	private String place;
+
 	@Column(name = "status")
 	private Integer status;
 
@@ -58,6 +61,10 @@ public class TimeTeacherCourse implements Serializable{
 
 	public Integer getEndWeek() {
 		return endWeek;
+	}
+
+	public String getPlace() {
+		return place;
 	}
 
 	public Integer getStatus() {
@@ -88,7 +95,12 @@ public class TimeTeacherCourse implements Serializable{
 		this.endWeek = endWeek;
 	}
 
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
 }

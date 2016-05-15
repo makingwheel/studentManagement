@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.makingwheel.model.SignService;
+import com.makingwheel.model.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/sign/")

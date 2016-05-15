@@ -1,4 +1,4 @@
-package com.makingwheel.controller.sign;
+package com.makingwheel.model.vo;
 
 public class UserVo {
 	private String count;

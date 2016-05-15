@@ -18,7 +18,7 @@ public class BasicDao<T> {
 	protected HibernateTemplate hibernateTemplate;
 
 	@Autowired
-	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
 	private Class<T> entityClass;
 

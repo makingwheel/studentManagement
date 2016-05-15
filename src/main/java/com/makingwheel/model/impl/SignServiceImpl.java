@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.makingwheel.common.CollectionUtils;
-import com.makingwheel.controller.sign.UserVo;
 import com.makingwheel.dao.entity.User;
 import com.makingwheel.dao.impl.UserDaoImpl;
 import com.makingwheel.model.SignService;
+import com.makingwheel.model.vo.UserVo;
 
 @Service
 public class SignServiceImpl implements SignService {

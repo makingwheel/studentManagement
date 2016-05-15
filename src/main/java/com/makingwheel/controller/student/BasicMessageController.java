@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.makingwheel.controller.sign.UserVo;
 import com.makingwheel.dao.entity.Student;
 import com.makingwheel.model.StudentService;
+import com.makingwheel.model.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/student/basicMessage/")
