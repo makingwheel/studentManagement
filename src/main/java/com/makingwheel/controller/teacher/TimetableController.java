@@ -1,4 +1,4 @@
-package com.makingwheel.controller.student;
+package com.makingwheel.controller.teacher;
 
 import java.util.List;
 
