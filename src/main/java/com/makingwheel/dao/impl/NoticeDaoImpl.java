@@ -2,8 +2,10 @@ package com.makingwheel.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.makingwheel.common.QueryParameters;
 import com.makingwheel.dao.BasicDao;
 import com.makingwheel.dao.NoticeDao;
 import com.makingwheel.dao.entity.Notice;
@@ -11,15 +13,28 @@ import com.makingwheel.dao.entity.Notice;
 @Repository
 public class NoticeDaoImpl extends BasicDao<Notice>implements NoticeDao {
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Notice> queryByStatus(Integer status) {
+	public List<Notice> queryByStatus(Integer status, QueryParameters queryParameters) {
 		StringBuffer hql = new StringBuffer("from Notice n ");
 		hql.append("where n.status = ? ");
 		hql.append("order by n.modifyDate desc ");
-		return (List<Notice>) hibernateTemplate.find(hql.toString(), status);
+		@SuppressWarnings("unchecked")
+		List<Notice> list = (List<Notice>) hibernateTemplate.execute(session -> {
+			Query query = session.createQuery(hql.toString());
+			query.setMaxResults(queryParameters.getOffset());
+			query.setFirstResult(queryParameters.getFirstResult());
+			query.setParameter(0, status);
+			return query.list();
+		});
+		return list;
 	}
 
-	
-	
+	@Override
+	public Integer queryByStatusCount(Integer status) {
+		StringBuffer hql = new StringBuffer("select count(*) ");
+		hql.append("from Notice n ");
+		hql.append("where n.status = ? ");
+		Long count = (Long) hibernateTemplate.find(hql.toString(), status).listIterator().next();
+		return count.intValue();
+	}
 }

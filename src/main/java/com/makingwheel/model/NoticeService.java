@@ -1,10 +1,9 @@
 package com.makingwheel.model;
 
-import java.util.List;
-
-import com.makingwheel.dao.entity.Notice;
+import com.makingwheel.common.PageResult;
+import com.makingwheel.common.QueryParameters;
 
 public interface NoticeService {
 
-	public List<Notice> queryByStatus(Integer status);
+	public PageResult queryByStatus(Integer status, QueryParameters queryParameters);
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.makingwheel.common.PageResult;
+import com.makingwheel.common.QueryParameters;
 import com.makingwheel.model.NoticeService;
 
 @Controller
@@ -27,10 +28,8 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "list.do", method=RequestMethod.GET)
-	public PageResult list(ModelMap model)
+	public PageResult list(ModelMap model, QueryParameters queryParameters)
 	{
-		PageResult pageResult = new PageResult();
-		pageResult.setRows(noticeService.queryByStatus(1));
-		return pageResult;
+		return noticeService.queryByStatus(1, queryParameters);
 	}
 }
