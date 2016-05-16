@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.beanutils.ConvertUtils;
+
 public class BeanUtils {
 
 	public static <T> T counstruct(Object[] objects, Class<T> c) throws NoSuchMethodException, SecurityException,
@@ -20,14 +22,16 @@ public class BeanUtils {
 		}
 		fieldEntries = fieldEntries.stream().sorted((y, x) -> x.sort - y.sort).collect(Collectors.toList());
 		for (int i = 0, length = fieldEntries.size(); i < length; i++){
-			Class<?> class1 = (fieldEntries.get(i).method.getParameterTypes())[0];
-			//fieldEntries.get(i).method.invoke(t, (class1.getClass())objects[i]);
-//			invoke(t, objects[i]);
-			
+			fieldEntries.get(i).method.invoke(t, coverToType(objects[i], (fieldEntries.get(i).method.getParameterTypes())[0]));			
 		}
 			return t;
 	}
 
+	@SuppressWarnings("unchecked")
+	private static <T> T coverToType(Object source , Class<T> type){
+		return null == source ? null : (T)ConvertUtils.convert(source, type);
+	}
+	
 	private static class FieldEntry {
 		private int sort;
 
