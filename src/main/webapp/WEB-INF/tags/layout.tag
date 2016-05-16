@@ -42,7 +42,7 @@
 						<li><a href="<c:url value="" />">成绩公布</a></li>
 					</c:if>
 					<c:if test="${user.type eq 2 }">
-						<li><a href="<c:url value="/student/home/index.do" />">首页</a></li>
+						<li><a href="<c:url value="/home/index.do" />">首页</a></li>
 						<li><a href="<c:url value="/student/basicMessage/index.do" />">基本信息</a></li> 
 						<li><a href="<c:url value="/student/timetable/index.do" />">课表查询</a></li> 
 						<li><a href="<c:url value="/student/achievement/index.do" />">成绩查询</a></li>

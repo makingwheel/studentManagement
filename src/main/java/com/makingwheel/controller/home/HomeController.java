@@ -1,4 +1,4 @@
-package com.makingwheel.controller.student;
+package com.makingwheel.controller.home;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +12,10 @@ import com.makingwheel.common.PageResult;
 import com.makingwheel.model.NoticeService;
 
 @Controller
-@RequestMapping(value = "/student/home")
+@RequestMapping(value = "/home")
 public class HomeController {
 
-	private static final String BASIC_PATH = "/student/home";
+	private static final String BASIC_PATH = "/home";
 	
 	@Autowired
 	private NoticeService noticeService;

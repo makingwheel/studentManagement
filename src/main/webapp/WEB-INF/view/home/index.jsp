@@ -4,4 +4,4 @@
 	<h1 class="page-header">通知</h1>
 	<table id="notice" class=""></table>
 </v:layout>
-<script src="/studentManagement/resources/js/student/index.js"></script>
+<script src="/studentManagement/resources/js/home/index.js"></script>

@@ -19,9 +19,9 @@ $(function(){
 	});
 	
 	var type_url = {
-		0 : $.rootPath + 'admin/home/index.do',
-		1 : $.rootPath + 'teacher/home/index.do',
-		2 : $.rootPath + 'student/home/index.do'
+		0 : $.rootPath + 'home/admin/index.do',
+		1 : $.rootPath + 'home/index.do',
+		2 : $.rootPath + 'home/index.do'
 	}
 	
 	$('#signOn').on('click',function(){
