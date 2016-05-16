@@ -65,7 +65,6 @@ public class BasicDao<T> {
 		return Optional.ofNullable(list);
 	}
 
-	@SuppressWarnings("unchecked")
 	public Optional<List<T>> queryPage(final QueryParameters queryParameters, final String hql,
 			final Object... values) {
 		return Optional.ofNullable(hibernateTemplate.execute(session -> {
