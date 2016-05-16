@@ -1,0 +1,87 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       ">
+    <context:property-placeholder location="classpath*:configure/jdbc.properties" />
+    
+    <!-- 定义数据库连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="initialPoolSize" value="5" />
+    </bean>
+
+    <!-- 配置sessionFactory -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.makingwheel.dao.entity" />
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQLDialect
+                hibernate.hbm2ddl.auto=update
+                hibernate.show_sql=true
+                hibernate.format_sql=true
+                hibernate.cache.use_second_level_cache=false
+                hibernate.cache.use_query_cache=false
+                <!-- 数据库批量查询最大数 -->
+                hibernate.jdbc.fetch_size=50
+                <!-- 数据库批量更新、添加、删除操作最大数 -->
+                hibernate.jdbc.batch_size=50
+                <!-- 是否自动提交事务 -->
+                hibernate.connection.autocommit=true
+                <!-- 指定hibernate在何时释放JDBC连接 -->
+                hibernate.connection.release_mode=auto
+                <!-- 创建session方式 hibernate5.x 的方式 -->
+                hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+                <!-- 不设置的话它会自动去classpath下面找一个bean-validation**包,默认情况下是auto的， -->
+                javax.persistence.validation.mode=none
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+   
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="save" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="save*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="import*" propagation="REQUIRED" />
+            <tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+	
+	<context:component-scan base-package="com.makingwheel">
+		<context:exclude-filter type="annotation"
+                expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.makingwheel.model.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>
