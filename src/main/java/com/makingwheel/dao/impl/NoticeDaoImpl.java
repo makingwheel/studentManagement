@@ -21,7 +21,7 @@ public class NoticeDaoImpl extends BasicDao<Notice>implements NoticeDao {
 		@SuppressWarnings("unchecked")
 		List<Notice> list = (List<Notice>) hibernateTemplate.execute(session -> {
 			Query query = session.createQuery(hql.toString());
-			query.setMaxResults(queryParameters.getOffset());
+			query.setMaxResults(queryParameters.getLimit());
 			query.setFirstResult(queryParameters.getFirstResult());
 			query.setParameter(0, status);
 			return query.list();
@@ -30,7 +30,7 @@ public class NoticeDaoImpl extends BasicDao<Notice>implements NoticeDao {
 	}
 
 	@Override
-	public Integer queryByStatusCount(Integer status) {
+	public Integer queryCountByStatus(Integer status) {
 		StringBuffer hql = new StringBuffer("select count(*) ");
 		hql.append("from Notice n ");
 		hql.append("where n.status = ? ");

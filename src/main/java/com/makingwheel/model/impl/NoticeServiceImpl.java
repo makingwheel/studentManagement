@@ -21,7 +21,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public PageResult queryByStatus(Integer status, QueryParameters queryParameters) {
 		PageResult pageResult = new PageResult();
 		List<Notice> notices = noticeDaoImpl.queryByStatus(status, queryParameters);
-		Integer count = noticeDaoImpl.queryByStatusCount(status);
+		Integer count = noticeDaoImpl.queryCountByStatus(status);
 		pageResult.setRows(notices);
 		pageResult.setTotal(count);
 		return pageResult;

@@ -9,5 +9,5 @@ public interface NoticeDao {
 	
 	public List<Notice> queryByStatus(Integer status, QueryParameters queryParameters);
 	
-	public Integer queryByStatusCount(Integer status);
+	public Integer queryCountByStatus(Integer status);
 }

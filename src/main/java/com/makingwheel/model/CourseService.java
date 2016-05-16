@@ -1,10 +1,9 @@
 package com.makingwheel.model;
 
-import java.util.List;
-
-import com.makingwheel.model.vo.CourseVo;
+import com.makingwheel.common.PageResult;
+import com.makingwheel.controller.queryParams.CourseQueryParameters;
 
 public interface CourseService {
 
-	public List<CourseVo> querybyTerm(Long term);
+	public PageResult querybyTerm(CourseQueryParameters queryParameters);
 }

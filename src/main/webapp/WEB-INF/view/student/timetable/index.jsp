@@ -2,6 +2,6 @@
 <%@ taglib prefix="v" tagdir="/WEB-INF/tags" %>
 <v:layout>
 	<h1 class="page-header">课表查询</h1>
+	<table id="notice" class=""></table>
 </v:layout>
-<!-- <script src="/studentManagement/resources/js/student/index.js"></script>
- -->
+<script src="/studentManagement/resources/js/student/timetable/index.js"></script>
