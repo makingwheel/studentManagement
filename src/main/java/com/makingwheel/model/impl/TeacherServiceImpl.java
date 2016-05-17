@@ -18,8 +18,8 @@ public class TeacherServiceImpl implements TeacherService {
 	private TeacherDaoImpl TeacherDaoImpl;
 
 	@Override
-	public Teacher save(Teacher Teacher) {
-		return TeacherDaoImpl.save(Teacher);
+	public Teacher save(Teacher teacher) {
+		return TeacherDaoImpl.save(teacher);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public Optional<Teacher> findByCount(String count) {
-		List<Teacher> Teachers = TeacherDaoImpl.findByCount(count);
-		return CollectionUtils.validate(Teachers) ? Optional.ofNullable(Teachers.get(0)) : Optional.ofNullable(null);
+		List<Teacher> teachers = TeacherDaoImpl.findByCount(count);
+		return CollectionUtils.validate(teachers) ? Optional.ofNullable(teachers.get(0)) : Optional.ofNullable(null);
 	}
 
 }
