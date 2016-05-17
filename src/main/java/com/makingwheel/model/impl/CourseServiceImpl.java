@@ -18,10 +18,10 @@ public class CourseServiceImpl implements CourseService {
 	private CourseDaoImpl courseDaoImpl;
 	
 	@Override
-	public PageResult querybyTerm(CourseQueryParameters queryParameters) {
+	public PageResult queryForStudent(CourseQueryParameters queryParameters) {
 		PageResult pageResult = new PageResult();
-		List<CourseVo> courseVos = courseDaoImpl.querybyTerm(queryParameters);
-		int count = courseDaoImpl.queryCountbyTerm(queryParameters);
+		List<CourseVo> courseVos = courseDaoImpl.queryForStudent(queryParameters);
+		int count = courseDaoImpl.queryCountForStudent(queryParameters);
 		pageResult.setRows(courseVos);
 		pageResult.setTotal(count);
 		return pageResult;

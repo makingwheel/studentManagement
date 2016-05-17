@@ -5,5 +5,5 @@ import com.makingwheel.controller.queryParams.CourseQueryParameters;
 
 public interface CourseService {
 
-	public PageResult querybyTerm(CourseQueryParameters queryParameters);
+	public PageResult queryForStudent(CourseQueryParameters queryParameters);
 }

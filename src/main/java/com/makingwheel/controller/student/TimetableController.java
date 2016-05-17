@@ -28,6 +28,6 @@ public class TimetableController {
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
 	public PageResult list(ModelMap model, CourseQueryParameters queryParameters){
-		return courseService.querybyTerm(queryParameters);
+		return courseService.queryForStudent(queryParameters);
 	}
 }
