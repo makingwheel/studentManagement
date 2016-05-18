@@ -19,7 +19,7 @@ $(function(){
 	});
 	
 	var type_url = {
-		0 : $.rootPath + 'home/admin/index.do',
+		0 : $.rootPath + 'home/index.do',
 		1 : $.rootPath + 'home/index.do',
 		2 : $.rootPath + 'home/index.do'
 	}

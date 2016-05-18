@@ -30,7 +30,8 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul id="menuContain" class="nav nav-sidebar">
 					<c:if test="${user.type eq 0 }">
-						<li><a href="<c:url value="" />">首页</a></li>
+						<li><a href="<c:url value="/home/index.do" />">首页</a></li>
+						<li><a href="<c:url value="/manager/info/index.do" />">基本信息</a></li>
 						<li><a href="<c:url value="" />">学生管理</a></li> 
 						<li><a href="<c:url value="" />">教师管理</a></li> 
 						<li><a href="<c:url value="" />">发布信息</a></li>

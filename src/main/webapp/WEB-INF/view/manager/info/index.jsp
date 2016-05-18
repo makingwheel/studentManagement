@@ -8,7 +8,7 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.name}">
 			</div>
-			<label for="" class="col-sm-2 control-label">教师号：</label>
+			<label for="" class="col-sm-2 control-label">教工号：</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.count}">
 			</div>
@@ -18,19 +18,9 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.sex}">
 			</div>
-			<label for="" class="col-sm-2 control-label">民族：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${manager.nation}">
-			</div>
-		</div>
-		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">出生日期：</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.birthday}">
-			</div>
-			<label for="" class="col-sm-2 control-label">籍贯：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${manager.placeOfOrigin}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -48,16 +38,10 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.email}">
 			</div>
-			<label for="" class="col-sm-2 control-label">班级：</label>
+			<%-- <label for="" class="col-sm-2 control-label">：</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${manager.classId}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">学位：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${manager.degree}">
-			</div>
+			</div> --%>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">家庭住址：</label>
