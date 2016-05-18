@@ -8,7 +8,6 @@ public class CourseVo {
 
 	private String name;
 
-	// @SortField(value = 3)
 	private String message;
 
 	private String teacheName;
@@ -22,6 +21,8 @@ public class CourseVo {
 	private Integer endWeek;
 
 	private String place;
+	
+	private Double result;
 
 	public Long getId() {
 		return id;
@@ -37,32 +38,44 @@ public class CourseVo {
 		this.name = name;
 	}
 
+	@SortField(value = 3)
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	@SortField(value = 4)
 	public void setTeacheName(String teacheName) {
 		this.teacheName = teacheName;
 	}
 
+	@SortField(value = 5)
 	public void setWeek(Integer week) {
 		this.week = week;
 	}
 
+	@SortField(value = 6)
 	public void setNode(Integer node) {
 		this.node = node;
 	}
-
+	
+	@SortField(value = 7)
 	public void setBeginWeek(Integer beginWeek) {
 		this.beginWeek = beginWeek;
 	}
 
+	@SortField(value = 8)
 	public void setEndWeek(Integer endWeek) {
 		this.endWeek = endWeek;
 	}
 
+	@SortField(value = 9)
 	public void setPlace(String place) {
 		this.place = place;
+	}
+	
+	@SortField(value = 10)
+	public void setResult(Double result) {
+		this.result = result;
 	}
 	
 	public String getName() {
@@ -97,4 +110,7 @@ public class CourseVo {
 		return place;
 	}
 
+	public double getResult() {
+		return result;
+	}
 }

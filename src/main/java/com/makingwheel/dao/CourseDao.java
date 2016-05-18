@@ -7,7 +7,11 @@ import com.makingwheel.model.vo.CourseVo;
 
 public interface CourseDao {
 
-	public List<CourseVo> querybyTerm(CourseQueryParameters queryParameters);
+	public List<CourseVo> queryForStudent(CourseQueryParameters queryParameters);
 	
-	public Integer queryCountbyTerm(CourseQueryParameters queryParameters);
+	public Integer queryCountForStudent(CourseQueryParameters queryParameters);
+	
+	public List<CourseVo> queryForTeacher(CourseQueryParameters queryParameters);
+	
+	public Integer queryCountForTeacher(CourseQueryParameters queryParameters);
 }

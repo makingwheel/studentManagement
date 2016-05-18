@@ -1,7 +1,7 @@
 $(function(){
 	console.log("rootPath : " + $.rootPath);
-	$('#timeTable').bootstrapTable({
-		url: $.rootPath + "student/timetable/list.do",
+	$('#achievement').bootstrapTable({
+		url: $.rootPath + "student/achievement/list.do",
 		pagination: true,
 		sidePagination: "server",
 		columns: [{
@@ -14,16 +14,8 @@ $(function(){
 			title: '授课教师',
 			field: 'teacher'
 		},{
-			title: '上课时间',
-			field: '',
-			formatter:function(value,row,index){
-				var time = "第 " + row.beginWeek + " 周 至 第" + row.endWeek + "周 ";
-				time += "周 " + row.week + " 第 " + row.node + "节 ";
-				return time;
-			}
-		},{
-			title: '上课地点',
-			field: 'place'
+			title: '成绩',
+			field: 'result'
 		}/*,{
 			field: 'modifyDate',
 			title: '发布日期',

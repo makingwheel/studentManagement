@@ -19,16 +19,28 @@ import com.makingwheel.model.vo.CourseVo;
 public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 
 	@Override
-	public List<CourseVo> querybyTerm(CourseQueryParameters queryParameters) {
+	public List<CourseVo> queryForStudent(CourseQueryParameters queryParameters) {
 		List<CourseVo> courseVos = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select c.id , c.name ")
+		sql.append("select c.id, c.name, c.message, ")
+		.append("t.name, ttc.week, ttc.node, ttc.begin_week, ")
+		.append("ttc.end_week, ttc.place , stc.result")
 		.append("from sm_course c, ")
-		.append("sm_teacher_course tc ")
-		.append("where c.id = tc.course_id ");
+		.append("sm_teacher_course tc, ")
+		.append("sm_teacher t, ")
+		.append("sm_time_teacher_course ttc, ")
+		.append("sm_student_teacher_course stc ")
+		.append("where c.id = tc.course_id ")
+		.append("and tc.teacher_id = t.id ")
+		.append("and ttc.teacher_course_id = tc.id ")
+		.append("and stc.teacher_course_id = tc.id ")
+		.append("and tc.term_id = ? ")
+		.append("and stc.student_id = ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
 		sqlQuery.setFirstResult(queryParameters.getFirstResult());
 		sqlQuery.setMaxResults(queryParameters.getLimit());
+		sqlQuery.setParameter(0, queryParameters.getTermId());
+		sqlQuery.setParameter(1, queryParameters.getStudentId());
 		@SuppressWarnings("unchecked")
 		List<Object[]> results = sqlQuery.list();
 		for(Object[] result : results){
@@ -44,15 +56,37 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 	}
 
 	@Override
-	public Integer queryCountbyTerm(CourseQueryParameters queryParameters) {
+	public Integer queryCountForStudent(CourseQueryParameters queryParameters) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select count(*) ")
 		.append("from sm_course c, ")
-		.append("sm_teacher_course tc ")
-		.append("where c.id = tc.course_id ");
+		.append("sm_teacher_course tc, ")
+		.append("sm_teacher t, ")
+		.append("sm_time_teacher_course ttc, ")
+		.append("sm_student_teacher_course stc ")
+		.append("where c.id = tc.course_id ")
+		.append("and tc.teacher_id = t.id ")
+		.append("and ttc.teacher_course_id = tc.id ")
+		.append("and stc.teacher_course_id = tc.id ")
+		.append("and tc.term_id = ? ")
+		.append("and stc.student_id = ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
+		sqlQuery.setParameter(0, queryParameters.getTermId());
+		sqlQuery.setParameter(1, queryParameters.getStudentId());
 		BigInteger count = (BigInteger) sqlQuery.uniqueResult();
 		return count.intValue();
+	}
+
+	@Override
+	public List<CourseVo> queryForTeacher(CourseQueryParameters queryParameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer queryCountForTeacher(CourseQueryParameters queryParameters) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.makingwheel.controller.student;
+package com.makingwheel.controller.teacher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,9 @@ import com.makingwheel.controller.queryParams.CourseQueryParameters;
 import com.makingwheel.model.CourseService;
 
 @Controller
-@RequestMapping(value = "/student/timetable/")
-public class TimetableController {
-	private static final String BASIC_PATH = "/student/timetable/";
+@RequestMapping(value = "/teacher/courseManagement/")
+public class CourseManagementController {
+	private static final String BASIC_PATH = "/teacher/courseManagement/";
 	
 	@Autowired
 	private CourseService courseService;

@@ -6,65 +6,65 @@
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">姓名：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.name}">
+				<input type="text" class="form-control" id="" value="${manager.name}">
 			</div>
-			<label for="" class="col-sm-2 control-label">学号：</label>
+			<label for="" class="col-sm-2 control-label">教师号：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.count}">
+				<input type="text" class="form-control" id="" value="${manager.count}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">性别：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.sex}">
+				<input type="text" class="form-control" id="" value="${manager.sex}">
 			</div>
 			<label for="" class="col-sm-2 control-label">民族：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.nation}">
+				<input type="text" class="form-control" id="" value="${manager.nation}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">出生日期：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.birthday}">
+				<input type="text" class="form-control" id="" value="${manager.birthday}">
 			</div>
 			<label for="" class="col-sm-2 control-label">籍贯：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.placeOfOrigin}">
+				<input type="text" class="form-control" id="" value="${manager.placeOfOrigin}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">qq：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.qq}">
+				<input type="text" class="form-control" id="" value="${manager.qq}">
 			</div>
 			<label for="" class="col-sm-2 control-label">手机：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.tel}">
+				<input type="text" class="form-control" id="" value="${manager.tel}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">邮箱：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.email}">
+				<input type="text" class="form-control" id="" value="${manager.email}">
 			</div>
 			<label for="" class="col-sm-2 control-label">班级：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.classId}">
+				<input type="text" class="form-control" id="" value="${manager.classId}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">学位：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.degree}">
+				<input type="text" class="form-control" id="" value="${manager.degree}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">家庭住址：</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="" value="${student.address}">
+				<input type="text" class="form-control" id="" value="${manager.address}">
 			</div>
 		</div>
 	</form>
 </v:layout>
-<!-- <script src="/studentManagement/resources/js/student/index.js"></script> -->
+<!-- <script src="/managerManagement/resources/js/manager/index.js"></script> -->
