@@ -13,28 +13,33 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.makingwheel.model.SignService;
+import com.makingwheel.model.TermService;
 import com.makingwheel.model.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/sign/")
-@SessionAttributes("user")
+@SessionAttributes({ "user", "termId" })
 public class SignController {
 
 	private static final String BASIC_PATH = "/sign/";
 	private static final String SUCCESS = "success";
 	@Autowired
 	private SignService signService;
-	
+
+	@Autowired
+	private TermService termService;
+
 	@RequestMapping(value = "on.op", method = RequestMethod.GET)
 	public ModelAndView signOn(ModelMap model) {
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "in.op" , method = RequestMethod.POST)
+	@RequestMapping(value = "in.op", method = RequestMethod.POST)
 	public ModelAndView signIn(ModelMap model, UserVo userVo, HttpServletRequest request) {
 		if (signService.checkUser(userVo)) {
 			signService.queryByUserVo(userVo).ifPresent(user -> userVo.setName(user.getName()));
+			termService.queryCurrentTerm().ifPresent(x -> model.addAttribute("termId", x.getId()));
 			userVo.setPassword("");
 			model.addAttribute("user", userVo);
 			model.put(SUCCESS, true);

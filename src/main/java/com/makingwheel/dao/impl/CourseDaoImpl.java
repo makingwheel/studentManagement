@@ -22,9 +22,9 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 	public List<CourseVo> queryForStudent(CourseQueryParameters queryParameters) {
 		List<CourseVo> courseVos = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select c.id, c.name, c.message, ")
-		.append("t.name, ttc.week, ttc.node, ttc.begin_week, ")
-		.append("ttc.end_week, ttc.place , stc.result")
+		sql.append("select c.id, c.name courseName, c.message, ")
+		.append("t.name teacherName, ttc.week, ttc.node, ttc.begin_week, ")
+		.append("ttc.end_week, ttc.place , stc.result ")
 		.append("from sm_course c, ")
 		.append("sm_teacher_course tc, ")
 		.append("sm_teacher t, ")
@@ -48,7 +48,6 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 				courseVos.add(BeanUtils.counstruct(result, CourseVo.class));
 			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
 					| IllegalArgumentException | InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

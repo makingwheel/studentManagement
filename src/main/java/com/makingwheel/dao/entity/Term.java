@@ -23,29 +23,29 @@ public class Term implements Serializable {
 	private Date year;
 
 	@Column(name = "term")
-	private Integer term;
+	private String term;
 
 	public Long getId() {
 		return id;
-	}
-
-	public Date getYear() {
-		return year;
-	}
-
-	public Integer getTerm() {
-		return term;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public Date getYear() {
+		return year;
+	}
+
 	public void setYear(Date year) {
 		this.year = year;
 	}
 
-	public void setTerm(Integer term) {
+	public String getTerm() {
+		return term;
+	}
+
+	public void setTerm(String term) {
 		this.term = term;
 	}
 }

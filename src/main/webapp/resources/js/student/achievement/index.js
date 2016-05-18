@@ -12,7 +12,7 @@ $(function(){
 			field: 'name'
 		},{
 			title: '授课教师',
-			field: 'teacher'
+			field: 'teacherName'
 		},{
 			title: '成绩',
 			field: 'result'

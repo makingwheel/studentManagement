@@ -10,7 +10,7 @@ public class CourseVo {
 
 	private String message;
 
-	private String teacheName;
+	private String teacherName;
 
 	private Integer week;
 
@@ -44,8 +44,8 @@ public class CourseVo {
 	}
 
 	@SortField(value = 4)
-	public void setTeacheName(String teacheName) {
-		this.teacheName = teacheName;
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
 	}
 
 	@SortField(value = 5)
@@ -86,8 +86,8 @@ public class CourseVo {
 		return message;
 	}
 
-	public String getTeacheName() {
-		return teacheName;
+	public String getTeacherName() {
+		return teacherName;
 	}
 
 	public Integer getWeek() {
