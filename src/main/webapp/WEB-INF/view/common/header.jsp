@@ -17,5 +17,9 @@
 <script src="/studentManagement/resources/js/lib/dashboard/ie10-viewport-bug-workaround.js"></script>
 <script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table.min.js"></script>
 <script src="/studentManagement/resources/js/lib/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+<script src="/studentManagement/resources/js/lib/jquery-form/jquery.form.js" ></script>
+<script src="/studentManagement/resources/js/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="/studentManagement/resources/js/lib/jquery-validate/additional-methods.min.js"></script>
+<script src="/studentManagement/resources/js/lib/jquery-validate/localization/messages_zh.min.js"></script>
 <script src="/studentManagement/resources/js/common/getPageRoot.js"></script>
 <script src="/studentManagement/resources/js/common/setMenuHighlight.js"></script>

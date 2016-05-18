@@ -2,7 +2,7 @@ package com.makingwheel.controller.queryParams;
 
 import com.makingwheel.common.QueryParameters;
 
-public class CourseQueryParameters extends QueryParameters {
+public class CourseQueryParams extends QueryParameters {
 	private Long termId;
 	
 	private Long studentId;

@@ -9,7 +9,7 @@ import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
 import com.makingwheel.common.BeanUtils;
-import com.makingwheel.controller.queryParams.CourseQueryParameters;
+import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.dao.BasicDao;
 import com.makingwheel.dao.CourseDao;
 import com.makingwheel.dao.entity.Course;
@@ -19,7 +19,7 @@ import com.makingwheel.model.vo.CourseVo;
 public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 
 	@Override
-	public List<CourseVo> queryForStudent(CourseQueryParameters queryParameters) {
+	public List<CourseVo> queryForStudent(CourseQueryParams queryParameters) {
 		List<CourseVo> courseVos = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select c.id, c.name courseName, c.message, ")
@@ -55,7 +55,7 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 	}
 
 	@Override
-	public Integer queryCountForStudent(CourseQueryParameters queryParameters) {
+	public Integer queryCountForStudent(CourseQueryParams queryParameters) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select count(*) ")
 		.append("from sm_course c, ")
@@ -77,13 +77,13 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 	}
 
 	@Override
-	public List<CourseVo> queryForTeacher(CourseQueryParameters queryParameters) {
+	public List<CourseVo> queryForTeacher(CourseQueryParams queryParameters) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Integer queryCountForTeacher(CourseQueryParameters queryParameters) {
+	public Integer queryCountForTeacher(CourseQueryParams queryParameters) {
 		// TODO Auto-generated method stub
 		return null;
 	}

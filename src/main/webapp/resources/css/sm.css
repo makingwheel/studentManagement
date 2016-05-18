@@ -4,3 +4,78 @@
 	height: 650px;
 	background: #fff url(../images/bg.png) no-repeat right bottom;
 }
+
+.error {
+	color: #fe0e01;
+}
+
+.so {
+	border-radius: 2px;
+	overflow: hidden;
+	border: solid 1px #ccd3d6;
+	padding: 10px 10px 0 10px;
+	margin: 10px 0 20px 0;
+}
+
+.so label {
+	font-weight: 300;
+}
+
+.so .form-inline .form-group {
+	margin-right: 30px;
+}
+/* .but-so{background: url(../images/but-bg.png) repeat-x;color:#fff;border-color:#1886c0;}
+.but-so:hover,.but-so:active,.so .btn-default.focus,.so .btn-default:focus{background: url(../images/but-bg.png) repeat-x left -32px;color:#fff !important;border-color:#1886c0 !important;}
+ */
+.so .checkbox {
+	margin-right: 30px;
+}
+
+.so .line {
+	float: left;
+}
+
+.so .form-group {
+	margin: 0;
+}
+
+.so .col-xs-1 {
+	padding-left: 0;
+	padding-right: 10px;
+	width: 13.3333%;
+}
+
+.so .col-xs-2, .so .col-xs-6 {
+	padding-left: 0;
+	margin-bottom: 10px;
+}
+
+.so .col-xs-6 {
+	width: 50%;
+}
+
+.so .col-xs-2.form-inline .form-control {
+	width: 46.3333%;
+}
+/*.so .form-horizontal .checkbox, .so .form-horizontal .checkbox-inline, .so .form-horizontal .radio, .so .form-horizontal .radio-inline{ padding-top:0;}
+*/
+.form-inline-two {
+	margin-top: 20px;
+	overflow: hidden
+}
+
+.form-inline-two .col-xs-2 {
+	width: 12%;
+}
+
+.form-inline-two .checkbox {
+	margin: 0;
+}
+
+.form-inline-two .but-so {
+	margin: 0 10px 0 0;
+}
+
+.btn-add {
+	text-align: right;
+}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.makingwheel.common.PageResult;
-import com.makingwheel.controller.queryParams.CourseQueryParameters;
+import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.model.CourseService;
 import com.makingwheel.model.StudentService;
 import com.makingwheel.model.vo.UserVo;
@@ -36,7 +36,7 @@ public class TimetableController {
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
 	public PageResult list(ModelMap model, @ModelAttribute(value = "termId") Long termId,
-			@ModelAttribute(value = "user") UserVo user, CourseQueryParameters queryParameters) {
+			@ModelAttribute(value = "user") UserVo user, CourseQueryParams queryParameters) {
 		studentService.findByCount(user.getCount()).ifPresent(x -> queryParameters.setStudentId(x.getId()));
 		queryParameters.setTermId(termId);
 		return courseService.queryForStudent(queryParameters);

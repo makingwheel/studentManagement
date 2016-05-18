@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.makingwheel.common.PageResult;
-import com.makingwheel.controller.queryParams.CourseQueryParameters;
+import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.model.CourseService;
 
 @Controller
@@ -27,7 +27,7 @@ public class CourseManagementController {
 	
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public PageResult list(ModelMap model, CourseQueryParameters queryParameters){
+	public PageResult list(ModelMap model, CourseQueryParams queryParameters){
 		return courseService.queryForStudent(queryParameters);
 	}
 }

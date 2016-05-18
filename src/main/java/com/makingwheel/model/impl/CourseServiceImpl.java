@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.makingwheel.common.PageResult;
-import com.makingwheel.controller.queryParams.CourseQueryParameters;
+import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.dao.impl.CourseDaoImpl;
 import com.makingwheel.model.CourseService;
 import com.makingwheel.model.vo.CourseVo;
@@ -18,7 +18,7 @@ public class CourseServiceImpl implements CourseService {
 	private CourseDaoImpl courseDaoImpl;
 	
 	@Override
-	public PageResult queryForStudent(CourseQueryParameters queryParameters) {
+	public PageResult queryForStudent(CourseQueryParams queryParameters) {
 		PageResult pageResult = new PageResult();
 		List<CourseVo> courseVos = courseDaoImpl.queryForStudent(queryParameters);
 		int count = courseDaoImpl.queryCountForStudent(queryParameters);
