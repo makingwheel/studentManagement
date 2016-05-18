@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.StudentQueryParams;
+import com.makingwheel.controller.queryParams.TimeTableQueryParams;
 import com.makingwheel.dao.entity.Student;
 import com.makingwheel.model.StudentService;
 
@@ -43,8 +44,9 @@ public class TimeTableManagerController {
 
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public PageResult list(ModelMap model, StudentQueryParams queryParams) {
-		return studentService.list(queryParams);
+	public PageResult list(ModelMap model, TimeTableQueryParams queryParams) {
+		//return studentService.list(queryParams);
+		return new PageResult();
 	}
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
