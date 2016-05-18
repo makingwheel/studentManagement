@@ -21,10 +21,10 @@ import com.makingwheel.dao.entity.Student;
 import com.makingwheel.model.StudentService;
 
 @Controller
-@RequestMapping(value = "/manager/student/")
-public class StudentManagerController {
+@RequestMapping(value = "/manager/timeTable/")
+public class TimeTableManagerController {
 
-	private final static String BASIC_PATH = "/manager/student/";
+	private final static String BASIC_PATH = "/manager/timeTable/";
 	private final static String SUCCESS = "success";
 	@Autowired
 	private StudentService studentService;

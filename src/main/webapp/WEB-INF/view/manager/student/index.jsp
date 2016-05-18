@@ -3,20 +3,20 @@
 <v:layout>
 	<h1 class="page-header">学生管理</h1>
 	<div class="btn-add">
-		<button type="submit" class="btn btn-primary but-so">搜索</button>
+		<button type="button" id="add" class="btn btn-primary ">添加</button>
 	</div>
 	<div class="so">
 		<form class="form-horizontal">
 			<div class="form-group">
-				<label for="inputEmail3" class="col-xs-1 control-label">学号：</label>
+				<label for="" class="col-xs-1 control-label">学号：</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" id="" />
+					<input type="text" class="form-control" id="count" />
 				</div>
-				<label for="inputEmail3" class="col-xs-1 control-label">姓名：</label>
+				<label for="" class="col-xs-1 control-label">姓名：</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" id="" />
+					<input type="text" class="form-control" id="name" />
 				</div>
-				<button type="submit" class="btn btn-primary but-so">搜索</button>
+				<button type="button" id="search" class="btn btn-primary but-so">搜索</button>
 			</div>
 		</form>
 	</div>

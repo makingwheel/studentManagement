@@ -14,6 +14,7 @@ $(function(){
 			}
 		}*/
 	});
+	
 	$('#submit').on('click',function(){
 		console.log("click");
 		if($('#studentForm').validate().form()){
@@ -27,5 +28,9 @@ $(function(){
 				}
 			});
 		}
+	});
+	
+	$('#cancle').on('click', function(){
+		window.location.href = $.rootPath + 'manager/student/index.do';
 	});
 });

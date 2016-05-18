@@ -72,8 +72,7 @@
 			<div class="col-sm-5"></div>
 			<button type="button" id="submit" class="btn btn-primary">提交</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="btn btn-default btn-lg " role="button">取消</a>
-			<!-- <button type="button" class="btn btn-default">取消</button> -->
+			<button type="button" id="cancle" class="btn btn-default">取消</button>
 		</div>
 	</form>
 </v:layout>

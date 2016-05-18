@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.makingwheel.controller.queryParams.StudentQueryParams;
 import com.makingwheel.dao.BasicDao;
@@ -29,11 +30,21 @@ public class StudentDaoImpl extends BasicDao<Student>implements StudentDao {
 		sql.append("c.grade, c.college, c.class, s.status ")
 		.append("from sm_student s, ")
 		.append("sm_class c ")
-		.append("where s.class_id = c.id")
+		.append("where s.class_id = c.id ")
 		;
+		String count = queryParams.getCount();
+		String name = queryParams.getName();
+		if (!StringUtils.isEmpty(count)) sql.append("and s.count like ? ");
+		if (!StringUtils.isEmpty(name)) sql.append("and s.name like ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
 		sqlQuery.setFirstResult(queryParams.getFirstResult());
 		sqlQuery.setMaxResults(queryParams.getLimit());
+		int namePosition = 0;
+		if (!StringUtils.isEmpty(count)){
+			sqlQuery.setParameter(0, "%" + count+ "%");
+			namePosition++;
+		}
+		if (!StringUtils.isEmpty(name)) sqlQuery.setParameter(namePosition, "%" + name + "%");
 		@SuppressWarnings("unchecked")
 		List<Object[]> results = sqlQuery.list();
 		return results;
@@ -44,11 +55,20 @@ public class StudentDaoImpl extends BasicDao<Student>implements StudentDao {
 		StringBuffer sql = new StringBuffer("select count(*) ");
 		sql.append("from sm_student s, ")
 		.append("sm_class c ")
-		.append("where s.class_id = c.id")
+		.append("where s.class_id = c.id ")
 		;
+		String count = queryParams.getCount();
+		String name = queryParams.getName();
+		if (!StringUtils.isEmpty(count)) sql.append("and s.count like ? ");
+		if (!StringUtils.isEmpty(name)) sql.append("and s.name like ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
-		BigInteger count = (BigInteger) sqlQuery.uniqueResult();
-		return count.longValue();
+		int namePosition = 0;
+		if (!StringUtils.isEmpty(count)){
+			sqlQuery.setParameter(0, "%" + count + "%");
+			namePosition++;
+		}
+		if (!StringUtils.isEmpty(name)) sqlQuery.setParameter(namePosition, "%" + name + "%");
+		BigInteger total = (BigInteger) sqlQuery.uniqueResult();
+		return total.longValue();
 	}
-
 }
