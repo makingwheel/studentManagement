@@ -16,20 +16,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.makingwheel.common.PageResult;
-import com.makingwheel.controller.queryParams.TimeTableQueryParams;
-import com.makingwheel.dao.entity.TimeTeacherCourse;
-import com.makingwheel.model.TimeTableService;
+import com.makingwheel.controller.queryParams.TeacherQueryParams;
+import com.makingwheel.dao.entity.Teacher;
+import com.makingwheel.model.TeacherService;
 
 @Controller
-@RequestMapping(value = "/manager/timeTable/")
-public class TimeTableManagerController {
+@RequestMapping(value = "/manager/teacher/")
+public class TeacherManagerController {
 
-	private final static String BASIC_PATH = "/manager/timeTable/";
+	private final static String BASIC_PATH = "/manager/teacher/";
 	private final static String SUCCESS = "success";
-	
 	@Autowired
-	private TimeTableService timeTableService;
-	
+	private TeacherService teacherService;
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -44,20 +43,20 @@ public class TimeTableManagerController {
 
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public PageResult list(ModelMap model, TimeTableQueryParams queryParams) {
-		return timeTableService.list(queryParams);
+	public PageResult list(ModelMap model, TeacherQueryParams queryParams) {
+		return teacherService.list(queryParams);
 	}
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
-	public ModelAndView saveOrUpdate(ModelMap model, Long timeTeacherCourseId) {
-		model.put("timeTable", timeTableService.findByTimeTeacherCourseId(timeTeacherCourseId));
+	public ModelAndView saveOrUpdate(ModelMap model, Long teacherId) {
+		model.put("teacher", teacherId != null ? teacherService.find(teacherId).orElse(new Teacher()) : new Teacher());
 		return new ModelAndView(BASIC_PATH + "saveOrUpdate", model);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.POST)
-	public ModelAndView saveOrUpdate(ModelMap model, TimeTeacherCourse timeTeacherCourse) {
-		timeTableService.saveOrUpdateTimeTeacherCourse(timeTeacherCourse);
+	public ModelAndView saveOrUpdate(ModelMap model, Teacher teacher) {
+		teacherService.saveOrUpdate(teacher);
 		model.put(SUCCESS, true);
 		return new ModelAndView(new MappingJackson2JsonView(), model);
 	}

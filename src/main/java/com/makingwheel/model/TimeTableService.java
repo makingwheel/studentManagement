@@ -13,5 +13,5 @@ public interface TimeTableService {
 	
 	public Optional<TimeTableListVo> findByTimeTeacherCourseId(Long timeTeacherCourseId);
 	
-	public void saveTimeTeacherCourse(TimeTeacherCourse timeTeacherCourse);
+	public void saveOrUpdateTimeTeacherCourse(TimeTeacherCourse timeTeacherCourse);
 }

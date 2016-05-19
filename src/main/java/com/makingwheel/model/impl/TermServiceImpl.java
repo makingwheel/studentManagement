@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.makingwheel.common.CollectionUtils;
+import com.makingwheel.common.PageResult;
+import com.makingwheel.common.QueryParameters;
 import com.makingwheel.dao.entity.Term;
 import com.makingwheel.dao.impl.TermDaoImpl;
 import com.makingwheel.model.TermService;
@@ -31,6 +33,22 @@ public class TermServiceImpl implements TermService {
 		}
 		List<Term> terms = termDaoImpl.queryCurrentTerm(year, term);
 		return CollectionUtils.validate(terms) ? Optional.ofNullable(terms.get(0)) : Optional.ofNullable(null);
+	}
+
+	@Override
+	public void saveOrUpdate(Term term) {
+		termDaoImpl.saveOrUpdate(term);
+	}
+
+	@Override
+	public Optional<Term> find(Long id) {
+		return termDaoImpl.find(id);
+	}
+
+	@Override
+	public PageResult list(QueryParameters queryParams) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

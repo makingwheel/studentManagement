@@ -55,8 +55,8 @@ public class TimeTableServiceImpl implements TimeTableService {
 	}
 
 	@Override
-	public void saveTimeTeacherCourse(TimeTeacherCourse timeTeacherCourse) {
-		timeTableDaoImpl.save(timeTeacherCourse);
+	public void saveOrUpdateTimeTeacherCourse(TimeTeacherCourse timeTeacherCourse) {
+		timeTableDaoImpl.saveOrUpdate(timeTeacherCourse);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.makingwheel.common.QueryParameters;
 import com.makingwheel.dao.BasicDao;
 import com.makingwheel.dao.TermDao;
 import com.makingwheel.dao.entity.Term;
@@ -20,6 +21,12 @@ public class TermDaoImpl extends BasicDao<Term>implements TermDao {
 		@SuppressWarnings("unchecked")
 		List<Term> terms = (List<Term>) hibernateTemplate.find(hql.toString(), year, term);
 		return terms;
+	}
+
+	@Override
+	public List<Object[]> list(QueryParameters queryParams) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
