@@ -9,7 +9,7 @@ public interface TeacherDao {
 
 	public List<Teacher> findByCount(String count);
 	
-	public List<Object[]> list(TeacherQueryParams queryParams);
+	public List<Teacher> list(TeacherQueryParams queryParams);
 	
-	public Long queryListTotal(TeacherQueryParams queryParams);
+	public int queryListTotal(TeacherQueryParams queryParams);
 }

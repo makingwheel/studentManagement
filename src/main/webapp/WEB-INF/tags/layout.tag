@@ -33,8 +33,12 @@
 					<c:if test="${user.type eq 0 }">
 						<li><a href="<c:url value="/manager/info/index.do" />">基本信息</a></li>
 						<li><a href="<c:url value="/manager/student/index.do" />">学生管理</a></li> 
-						<li><a href="<c:url value="" />">教师管理</a></li> 
-						<li><a href="<c:url value="/manager/timeTable/index.do" />">课程管理</a></li>
+						<li><a href="<c:url value="/manager/teacher/index.do" />">教师管理</a></li> 
+						<li><a href="<c:url value="/manager/timeTable/index.do" />">课表管理</a></li>
+						<li><a href="<c:url value="/manager/course/index.do" />">课程管理</a></li>
+						<li><a href="<c:url value="/manager/term/index.do" />">学期管理</a></li>
+						<li><a href="<c:url value="/manager/class/index.do" />">班级管理</a></li>
+						
 					</c:if>
 					<c:if test="${user.type eq 1 }">
 						<li><a href="<c:url value="" />">基本信息</a></li> 

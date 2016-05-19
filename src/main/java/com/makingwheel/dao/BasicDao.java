@@ -70,7 +70,7 @@ public class BasicDao<T> {
 			final Object... values) {
 		return Optional.ofNullable(hibernateTemplate.execute(session -> {
 			Query query = session.createQuery(hql);
-			query.setParameter(0, values);
+//			query.setParameter(0, values);
 			if (values != null) {
 				for (int i = 0, length = values.length; i < length; i++) {
 					query.setParameter(i, values[i]);
