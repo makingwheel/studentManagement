@@ -42,8 +42,10 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public PageResult list(CourseQueryParams queryParams) {
-		// TODO Auto-generated method stub
-		return null;
+		PageResult pageResult = new PageResult();
+		pageResult.setRows(courseDaoImpl.queryForManager(queryParams));
+		pageResult.setTotal(courseDaoImpl.queryCountForManager(queryParams));
+		return pageResult;
 	}
 
 }

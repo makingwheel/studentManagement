@@ -69,8 +69,7 @@ public class BasicDao<T> {
 	public Optional<List<T>> queryPage(final QueryParameters queryParameters, final String hql,
 			final Object... values) {
 		return Optional.ofNullable(hibernateTemplate.execute(session -> {
-			Query query = session.createQuery(hql);
-//			query.setParameter(0, values);
+			Query query = session.createQuery(hql);	
 			if (values != null) {
 				for (int i = 0, length = values.length; i < length; i++) {
 					query.setParameter(i, values[i]);
