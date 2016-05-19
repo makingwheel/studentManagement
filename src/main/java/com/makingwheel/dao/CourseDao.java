@@ -15,7 +15,7 @@ public interface CourseDao {
 	
 	public Integer queryCountForTeacher(CourseQueryParams queryParameters);
 	
-public List<CourseVo> queryForManager(CourseQueryParams queryParameters);
+	public List<CourseVo> queryForManager(CourseQueryParams queryParameters);
 	
 	public Integer queryCountForManager(CourseQueryParams queryParameters);
 	 
