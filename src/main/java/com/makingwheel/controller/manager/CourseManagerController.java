@@ -56,6 +56,7 @@ public class CourseManagerController {
 	@ResponseBody
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.POST)
 	public ModelAndView saveOrUpdate(ModelMap model, Course course) {
+		course.setStatus(1);
 		courseService.saveOrUpdate(course);
 		model.put(SUCCESS, true);
 		return new ModelAndView(new MappingJackson2JsonView(), model);
