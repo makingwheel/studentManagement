@@ -48,15 +48,9 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" value="${teacher.email}">
 			</div>
-			<label for="" class="col-sm-2 control-label">班级：</label>
+			<label for="" class="col-sm-2 control-label">等级：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${teacher.classId}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">学位：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${teacher.degree}">
+				<input type="text" class="form-control" id="" value="${teacher.level}">
 			</div>
 		</div>
 		<div class="form-group">
