@@ -18,7 +18,9 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.TimeTableQueryParams;
 import com.makingwheel.dao.entity.TimeTeacherCourse;
+import com.makingwheel.model.SMClassService;
 import com.makingwheel.model.TimeTableService;
+import com.makingwheel.model.vo.TimeTableListVo;
 
 @Controller
 @RequestMapping(value = "/manager/timeTable/")
@@ -26,9 +28,12 @@ public class TimeTableManagerController {
 
 	private final static String BASIC_PATH = "/manager/timeTable/";
 	private final static String SUCCESS = "success";
-	
+
 	@Autowired
 	private TimeTableService timeTableService;
+	
+	@Autowired
+	private SMClassService smClassService;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -50,7 +55,9 @@ public class TimeTableManagerController {
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
 	public ModelAndView saveOrUpdate(ModelMap model, Long timeTeacherCourseId) {
-		model.put("timeTable", timeTableService.findByTimeTeacherCourseId(timeTeacherCourseId));
+		model.put("timeTable",
+				timeTableService.findByTimeTeacherCourseId(timeTeacherCourseId).orElse(new TimeTableListVo()));
+		model.put("smClasses", smClassService.findAll());
 		return new ModelAndView(BASIC_PATH + "saveOrUpdate", model);
 	}
 

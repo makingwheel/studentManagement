@@ -82,7 +82,4 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 		sqlQuery.setParameter(0, timeTeacherCourseId);
 		return sqlQuery.uniqueResult();
 	}
-
-	
-
 }

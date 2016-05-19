@@ -1,5 +1,7 @@
 package com.makingwheel.model.impl;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,10 @@ public class SMClassServiceImpl implements SMClassService {
 		pageResult.setRows(smClassDaoImpl.list(queryParams));
 		pageResult.setTotal(smClassDaoImpl.queryListCount(queryParams));
 		return pageResult;
+	}
+
+	@Override
+	public List<SMClass> findAll() {
+		return smClassDaoImpl.findAll().orElse(Collections.emptyList());
 	}
 }

@@ -1,7 +1,7 @@
 $(function(){
-	$('#studentForm').validate({
+	$('#timeTableForm').validate({
 		rules: {
-			count: {
+			smClassId: {
 				required: true
 			}
 		}/*,
@@ -17,11 +17,11 @@ $(function(){
 	
 	$('#submit').on('click',function(){
 		console.log("click");
-		if($('#studentForm').validate().form()){
-			$('#studentForm').ajaxSubmit({
+		if($('#timeTableForm').validate().form()){
+			$('#timeTableForm').ajaxSubmit({
 				success:function(data){
 					if(data.success){
-						window.location.href = $.rootPath + "manager/student/index.do";
+						window.location.href = $.rootPath + "manager/timeTable/index.do";
 					} else {
 						
 					}
@@ -31,6 +31,6 @@ $(function(){
 	});
 	
 	$('#cancle').on('click', function(){
-		window.location.href = $.rootPath + 'manager/student/index.do';
+		window.location.href = $.rootPath + 'manager/timeTable/index.do';
 	});
 });

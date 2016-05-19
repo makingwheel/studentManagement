@@ -2,78 +2,80 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="v" tagdir="/WEB-INF/tags"%>
 <v:layout>
-	<h1 class="page-header">学生信息管理</h1>
-	<form id="studentForm" class="form-horizontal" action="<c:url value="/manager/student/saveOrUpdate.do" />" 
+	<h1 class="page-header">课表信息管理</h1>
+	<form id="timeTableForm" class="form-horizontal" action="<c:url value="/manager/timeTable/saveOrUpdate.do" />" 
 		method="post">
-		<input type="hidden" name="id" value="${student.id }" >
+		<input type="hidden" name="id" value="${timeTable.timeTeacherCourseId }" >
+		<input type="hidden" name="teacherCourseId" value="${timeTable.teacherCourseId }" />
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">姓名：</label>
+			<label for="" class="col-sm-2 control-label">课程名称：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="name" value="${student.name}">
-			</div>
-			<label for="" class="col-sm-2 control-label">学号：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="count" value="${student.count}">
+				<input type="text" class="form-control" id="" name="" value="${timeTable.courseName}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">性别：</label>
+			<label for="" class="col-sm-2 control-label">教师名称：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="sex" value="${student.sex}">
-			</div>
-			<label for="" class="col-sm-2 control-label">民族：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="nation" value="${student.nation}">
+				<input type="text" class="form-control" id="" name="" value="${timeTable.teacherName}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">出生日期：</label>
+			<label for="" class="col-sm-2 control-label">起始周：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="birthday" value="${student.birthday}">
-			</div>
-			<label for="" class="col-sm-2 control-label">籍贯：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="placeOfOrigin" value="${student.placeOfOrigin}">
+				<input type="text" class="form-control" id="" name="beginWeek" value="${timeTable.beginWeek}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">qq：</label>
+			<label for="" class="col-sm-2 control-label">结束周：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="qq" value="${student.qq}">
-			</div>
-			<label for="" class="col-sm-2 control-label">手机：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="tel" value="${student.tel}">
+				<input type="text" class="form-control" id="" name="endWeek" value="${timeTable.endWeek}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">邮箱：</label>
+			<label for="" class="col-sm-2 control-label">星期：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="email" value="${student.email}">
+				<input type="text" class="form-control" id="" name="week" value="${timeTable.week}">
 			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">节：</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="" name="node" value="${timeTable.node}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">地点：</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="" name="place" value="${timeTable.place}">
+			</div>
+		</div>
+		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">班级：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="classId" value="${student.classId}">
+			<div class="col-sm-5">
+				<!-- <input type="text" class="form-control" id="" name="email" value=""> -->
+				<select class="form-control" id="smClassId" name="smClassId">
+					<c:forEach var="tem" items="${smClasses}">
+						<option value="${tem.id }" <c:if test="${timeTable.classId eq  tem.id}">selected="selected"</c:if>>
+							<c:out value="${tem.grade}"/>级
+							<c:out value="${tem.college }" />
+							<c:out value="${tem.smClass }" />
+						</option>
+					</c:forEach>
+				</select>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">学位：</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="degree" value="${student.degree}">
+			<label for="" class="col-sm-2 control-label">课程信息：</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="" name="" value="${timeTable.message}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">家庭住址：</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="" name="address" value="${student.address}">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-5"></div>
+			<div class="col-sm-3"></div>
 			<button type="button" id="submit" class="btn btn-primary">提交</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" id="cancle" class="btn btn-default">取消</button>
 		</div>
 	</form>
 </v:layout>
-<script src="/studentManagement/resources/js/manager/student/saveOrUpdate.js"></script>
+<script src="/studentManagement/resources/js/manager/timeTable/saveOrUpdate.js"></script>

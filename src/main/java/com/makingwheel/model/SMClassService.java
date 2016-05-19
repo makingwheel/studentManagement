@@ -1,5 +1,6 @@
 package com.makingwheel.model;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.makingwheel.common.PageResult;
@@ -13,4 +14,6 @@ public interface SMClassService {
 	public Optional<SMClass> find(Long id);
 	
 	public PageResult list(QueryParameters queryParams);
+	
+	public List<SMClass> findAll();
 }
