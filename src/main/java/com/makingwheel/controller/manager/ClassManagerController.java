@@ -21,10 +21,10 @@ import com.makingwheel.dao.entity.SMClass;
 import com.makingwheel.model.SMClassService;
 
 @Controller
-@RequestMapping(value = "/manager/class/")
+@RequestMapping(value = "/manager/smClass/")
 public class ClassManagerController {
 
-	private final static String BASIC_PATH = "/manager/class/";
+	private final static String BASIC_PATH = "/manager/smClass/";
 	private final static String SUCCESS = "success";
 	@Autowired
 	private SMClassService classService;
@@ -49,13 +49,14 @@ public class ClassManagerController {
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
 	public ModelAndView saveOrUpdate(ModelMap model, Long classId) {
-		model.put("class", classId != null ? classService.find(classId).orElse(new SMClass()) : new SMClass());
+		model.put("smClass", classId != null ? classService.find(classId).orElse(new SMClass()) : new SMClass());
 		return new ModelAndView(BASIC_PATH + "saveOrUpdate", model);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.POST)
 	public ModelAndView saveOrUpdate(ModelMap model, SMClass smClass) {
+		smClass.setStatus(1);
 		classService.saveOrUpdate(smClass);
 		model.put(SUCCESS, true);
 		return new ModelAndView(new MappingJackson2JsonView(), model);

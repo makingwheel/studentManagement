@@ -37,7 +37,7 @@
 						<li><a href="<c:url value="/manager/timeTable/index.do" />">课表管理</a></li>
 						<li><a href="<c:url value="/manager/course/index.do" />">课程管理</a></li>
 						<li><a href="<c:url value="/manager/term/index.do" />">学期管理</a></li>
-						<li><a href="<c:url value="/manager/class/index.do" />">班级管理</a></li>
+						<li><a href="<c:url value="/manager/smClass/index.do" />">班级管理</a></li>
 						
 					</c:if>
 					<c:if test="${user.type eq 1 }">

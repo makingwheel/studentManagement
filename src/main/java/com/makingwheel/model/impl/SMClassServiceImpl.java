@@ -29,10 +29,9 @@ public class SMClassServiceImpl implements SMClassService {
 
 	@Override
 	public PageResult list(QueryParameters queryParams) {
-		// TODO Auto-generated method stub
-		return null;
+		PageResult pageResult = new PageResult();
+		pageResult.setRows(smClassDaoImpl.list(queryParams));
+		pageResult.setTotal(smClassDaoImpl.queryListCount(queryParams));
+		return pageResult;
 	}
-
-	
-
 }
