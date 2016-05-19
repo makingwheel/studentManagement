@@ -8,7 +8,7 @@ public interface TimeTableDao {
 
 	public List<Object[]> list(TimeTableQueryParams queryParams);
 
-	public Long queryListCount(TimeTableQueryParams queryParams);
+	public int queryListCount(TimeTableQueryParams queryParams);
 
 	public Object findByTimeTeacherCourseId(Long timeTeacherCourseId);
 }

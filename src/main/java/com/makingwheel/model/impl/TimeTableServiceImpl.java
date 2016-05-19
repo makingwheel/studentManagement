@@ -37,6 +37,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 			}
 		}
 		pageResult.setRows(timeTableListVos);
+		pageResult.setTotal(timeTableDaoImpl.queryListCount(queryParams));
 		return pageResult;
 	}
 

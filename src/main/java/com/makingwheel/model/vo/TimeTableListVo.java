@@ -2,7 +2,6 @@ package com.makingwheel.model.vo;
 
 import com.makingwheel.common.SortField;
 
-
 public class TimeTableListVo {
 
 	private Long timeTeacherCourseId;
@@ -30,7 +29,7 @@ public class TimeTableListVo {
 	private String college;
 
 	private String smClass;
-	
+
 	private Long classId;
 
 	public Long getTimeTeacherCourseId() {
@@ -88,7 +87,7 @@ public class TimeTableListVo {
 	public Long getClassId() {
 		return classId;
 	}
-	
+
 	@SortField(value = 1)
 	public void setTimeTeacherCourseId(Long timeTeacherCourseId) {
 		this.timeTeacherCourseId = timeTeacherCourseId;

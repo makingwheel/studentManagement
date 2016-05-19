@@ -1,5 +1,6 @@
 package com.makingwheel.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -24,7 +25,7 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 		.append("sm_course c, ")
 		.append("sm_time_teacher_course ttc, ")
 		.append("sm_term term, ")
-		.append("sm_class class")
+		.append("sm_class class ")
 		.append("where tc.teacher_id = t.id ")
 		.append("and tc.course_id = c.id ")
 		.append("and tc.term_id = term.id ")
@@ -32,15 +33,30 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 		.append("and ttc.class_id = class.id ")
 		;
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
+		sqlQuery.setFirstResult(queryParams.getFirstResult());
+		sqlQuery.setMaxResults(queryParams.getLimit());
 		@SuppressWarnings("unchecked")
 		List<Object[]> list = sqlQuery.list();
 		return list;
 	}
 
 	@Override
-	public Long queryListCount(TimeTableQueryParams queryParams) {
-		// TODO Auto-generated method stub
-		return null;
+	public int queryListCount(TimeTableQueryParams queryParams) {
+		StringBuffer sql = new StringBuffer("select count(*) ");
+		sql.append("from sm_teacher t, ")
+		.append("sm_teacher_course tc, ")
+		.append("sm_course c, ")
+		.append("sm_time_teacher_course ttc, ")
+		.append("sm_term term, ")
+		.append("sm_class class ")
+		.append("where tc.teacher_id = t.id ")
+		.append("and tc.course_id = c.id ")
+		.append("and tc.term_id = term.id ")
+		.append("and ttc.teacher_course_id = tc.id ")
+		.append("and ttc.class_id = class.id ")
+		;
+		BigInteger total = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql.toString()).uniqueResult();
+		return total.intValue();
 	}
 
 	@Override
@@ -54,7 +70,7 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 		.append("sm_course c, ")
 		.append("sm_time_teacher_course ttc, ")
 		.append("sm_term term, ")
-		.append("sm_class class")
+		.append("sm_class class ")
 		.append("where tc.teacher_id = t.id ")
 		.append("and tc.course_id = c.id ")
 		.append("and tc.term_id = term.id ")
