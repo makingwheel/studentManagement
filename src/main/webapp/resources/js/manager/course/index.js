@@ -13,7 +13,7 @@ $(function(){
 			field: 'id',
 			title: '操作',
 			formatter:function(value,row,index){
-				var updatePath = $.rootPath + 'manager/course/saveOrUpdate.do?studentId=' + value,
+				var updatePath = $.rootPath + 'manager/course/saveOrUpdate.do?courseId=' + value,
 					update = '<a href = '+ updatePath +'>修改</a>';
 				return update;
 			}

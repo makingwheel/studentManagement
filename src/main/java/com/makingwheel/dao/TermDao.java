@@ -9,5 +9,7 @@ public interface TermDao {
 
 	public List<Term> queryCurrentTerm(int year, String term);
 	
-	public List<Object[]> list(QueryParameters queryParams);
+	public List<Term> list(QueryParameters queryParams);
+	
+	public int queryListCount(QueryParameters queryParams);
 }

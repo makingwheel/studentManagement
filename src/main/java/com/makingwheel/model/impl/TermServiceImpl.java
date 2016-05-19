@@ -47,8 +47,10 @@ public class TermServiceImpl implements TermService {
 
 	@Override
 	public PageResult list(QueryParameters queryParams) {
-		// TODO Auto-generated method stub
-		return null;
+		PageResult pageResult = new PageResult();
+		pageResult.setRows(termDaoImpl.list(queryParams));
+		pageResult.setTotal(termDaoImpl.queryListCount(queryParams));
+		return pageResult;
 	}
 
 }

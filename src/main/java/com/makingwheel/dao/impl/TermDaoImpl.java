@@ -2,6 +2,7 @@ package com.makingwheel.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.makingwheel.common.QueryParameters;
@@ -24,11 +25,20 @@ public class TermDaoImpl extends BasicDao<Term>implements TermDao {
 	}
 
 	@Override
-	public List<Object[]> list(QueryParameters queryParams) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Term> list(QueryParameters queryParams) {
+		StringBuffer hql = new StringBuffer("from Term ");
+		Query query = sessionFactory.getCurrentSession().createQuery(hql.toString());
+		query.setFirstResult(queryParams.getFirstResult());
+		query.setMaxResults(queryParams.getLimit());
+		@SuppressWarnings("unchecked")
+		List<Term> terms = query.list();
+		return terms;
 	}
 
-	
-
+	@Override
+	public int queryListCount(QueryParameters queryParams) {
+		StringBuffer hql = new StringBuffer("select count(*) from Term ");
+		Long total = (Long) sessionFactory.getCurrentSession().createQuery(hql.toString()).uniqueResult();
+		return total.intValue();
+	}
 }
