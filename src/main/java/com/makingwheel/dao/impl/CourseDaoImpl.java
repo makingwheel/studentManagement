@@ -88,4 +88,16 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 		return null;
 	}
 
+	@Override
+	public List<CourseVo> queryForManager(CourseQueryParams queryParameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer queryCountForManager(CourseQueryParams queryParameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

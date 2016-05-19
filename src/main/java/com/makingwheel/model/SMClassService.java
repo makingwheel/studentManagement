@@ -4,15 +4,13 @@ import java.util.Optional;
 
 import com.makingwheel.common.PageResult;
 import com.makingwheel.common.QueryParameters;
-import com.makingwheel.dao.entity.Term;
+import com.makingwheel.dao.entity.SMClass;
 
-public interface TermService {
+public interface SMClassService {
 	
-	public Optional<Term> queryCurrentTerm();
+	public void saveOrUpdate(SMClass smClass);
 	
-	public void saveOrUpdate(Term term);
-	
-	public Optional<Term> find(Long id);
+	public Optional<SMClass> find(Long id);
 	
 	public PageResult list(QueryParameters queryParams);
 }
