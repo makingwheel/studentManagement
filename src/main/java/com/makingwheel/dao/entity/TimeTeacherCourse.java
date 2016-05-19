@@ -35,6 +35,9 @@ public class TimeTeacherCourse implements Serializable {
 
 	@Column(name = "place")
 	private String place;
+	
+	@Column(name = "class_id")
+	private Long classId;
 
 	@Column(name = "status")
 	private Integer status;
@@ -43,64 +46,71 @@ public class TimeTeacherCourse implements Serializable {
 		return id;
 	}
 
-	public Long getTeacherCourseId() {
-		return teacherCourseId;
-	}
-
-	public Integer getWeek() {
-		return week;
-	}
-
-	public Integer getNode() {
-		return node;
-	}
-
-	public Integer getBeginWeek() {
-		return beginWeek;
-	}
-
-	public Integer getEndWeek() {
-		return endWeek;
-	}
-
-	public String getPlace() {
-		return place;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getTeacherCourseId() {
+		return teacherCourseId;
 	}
 
 	public void setTeacherCourseId(Long teacherCourseId) {
 		this.teacherCourseId = teacherCourseId;
 	}
 
+	public Integer getWeek() {
+		return week;
+	}
+
 	public void setWeek(Integer week) {
 		this.week = week;
+	}
+
+	public Integer getNode() {
+		return node;
 	}
 
 	public void setNode(Integer node) {
 		this.node = node;
 	}
 
+	public Integer getBeginWeek() {
+		return beginWeek;
+	}
+
 	public void setBeginWeek(Integer beginWeek) {
 		this.beginWeek = beginWeek;
+	}
+
+	public Integer getEndWeek() {
+		return endWeek;
 	}
 
 	public void setEndWeek(Integer endWeek) {
 		this.endWeek = endWeek;
 	}
 
+	public String getPlace() {
+		return place;
+	}
+
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public Long getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Long classId) {
+		this.classId = classId;
+	}
+
+	public Integer getStatus() {
+		return status;
 	}
 
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 }
