@@ -1,5 +1,8 @@
 $(function(){
-	console.log("rootPath : " + $.rootPath);
+	var noticeStatus= {
+		0 : '失效',
+		1 : '正常'
+	}
 	var userType = $('#userType').val();
 	if(userType != 0){
 		$('#notice').bootstrapTable({
@@ -61,12 +64,19 @@ $(function(){
 					return value;
 				}
 			},{
+				field: 'status',
+				title: '状态',
+				formatter : function(value, row, index){
+					return noticeStatus[value];
+				}
+			},{
 				field: 'id',
 				title: '操作',
 				formatter:function(value,row,index){
-					var del = '<a href >删除</a>';
-					var update = '<a href >修改</a>';
-					return del + update;
+					var upudatePath = $.rootPath + 'manager/notice/saveOrUpdate.do?noticeId=' + row.id,
+						del = '<a href="javascript:void(0);" id="delNotice" data-id='+ row.id +'>失效</a>',
+						update = '<a href='+upudatePath+'>修改</a>';
+					return del + '&nbsp;&nbsp;&nbsp;&nbsp;' +update;
 				}
 			}],
 			queryParams: function(params) {
@@ -75,6 +85,21 @@ $(function(){
 		});
 	}
 	
+	
+	$('#add').on('click',function(){
+		window.location.href = $.rootPath + "/manager/notice/saveOrUpdate.do"
+	});
+	
+	$(document).on('click' , '#delNotice', function(){
+		var url = $.rootPath + 'manager/notice/updateStatus.do',
+			id = $(this).data('id');;
+		$.post(url,{
+			noticeId : id,
+			status : 0
+		},function(data){
+			$('#notice').bootstrapTable('refresh');
+		});
+	});
 });
 
 

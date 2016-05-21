@@ -37,4 +37,25 @@ public class NoticeDaoImpl extends BasicDao<Notice>implements NoticeDao {
 		Long count = (Long) hibernateTemplate.find(hql.toString(), status).listIterator().next();
 		return count.intValue();
 	}
+
+	@Override
+	public List<Notice> query(QueryParameters queryParameters) {
+		StringBuffer hql = new StringBuffer("from Notice n ");
+		hql.append("order by n.modifyDate desc ");
+		@SuppressWarnings("unchecked")
+		List<Notice> list = (List<Notice>) hibernateTemplate.execute(session -> {
+			Query query = session.createQuery(hql.toString());
+			query.setMaxResults(queryParameters.getLimit());
+			query.setFirstResult(queryParameters.getFirstResult());
+			return query.list();
+		});
+		return list;
+	}
+	@Override
+	public Integer queryCount() {
+		StringBuffer hql = new StringBuffer("select count(*) ");
+		hql.append("from Notice n ");
+		Long count = (Long) hibernateTemplate.find(hql.toString()).listIterator().next();
+		return count.intValue();
+	}
 }
