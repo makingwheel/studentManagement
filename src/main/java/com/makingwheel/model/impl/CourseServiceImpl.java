@@ -1,11 +1,14 @@
 package com.makingwheel.model.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.makingwheel.common.BeanUtils;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.dao.entity.Course;
@@ -31,6 +34,25 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public PageResult queryForTeacher(CourseQueryParams queryParameters) {
+		PageResult pageResult = new PageResult();
+		List<CourseVo> courseVos = new ArrayList<>();
+		for (Object[] objects : courseDaoImpl.queryForTeacher(queryParameters)) {
+			try {
+				courseVos.add(BeanUtils.counstruct(objects, CourseVo.class));
+			} catch (NoSuchMethodException | SecurityException
+					| InstantiationException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		pageResult.setRows(courseVos);
+		pageResult.setTotal(courseDaoImpl.queryCountForTeacher(queryParameters));
+		return pageResult;
+	}
+	
+	@Override
 	public void saveOrUpdate(Course course) {
 		courseDaoImpl.saveOrUpdate(course);
 	}
@@ -48,4 +70,12 @@ public class CourseServiceImpl implements CourseService {
 		return pageResult;
 	}
 
+	@Override
+	public void updateResult(Long studentTeacherCourseId, double result) {
+		courseDaoImpl.findStudentTeacherCourse(studentTeacherCourseId).ifPresent(x->{
+			x.setResult(result);
+			courseDaoImpl.updateStudentTeacherCourse(x);
+		});
+		
+	}
 }

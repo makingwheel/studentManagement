@@ -23,6 +23,8 @@ public class CourseVo {
 	private String place;
 	
 	private Double result;
+	
+	private Long studentTeacherCourseId;
 
 	public Long getId() {
 		return id;
@@ -78,6 +80,11 @@ public class CourseVo {
 		this.result = result;
 	}
 	
+	@SortField(value = 11)
+	public void setStudentTeacherCourseId(Long studentTeacherCourseId){
+		this.studentTeacherCourseId = studentTeacherCourseId;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -112,5 +119,9 @@ public class CourseVo {
 
 	public double getResult() {
 		return result;
+	}
+	
+	public Long getStudentTeacherCourseId(){
+		return studentTeacherCourseId;
 	}
 }
