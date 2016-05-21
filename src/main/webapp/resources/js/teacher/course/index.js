@@ -16,6 +16,10 @@ $(function(){
 			title: '上课时间',
 			field: '',
 			formatter:function(value,row,index){
+				if(null == row.beginWeek || null == row.endWeek || null == row.week || null == row.node){
+					return '-';
+				}
+				
 				var time = "第 " + row.beginWeek + " 周 至 第" + row.endWeek + "周 ";
 				time += "周 " + row.week + " 第 " + row.node + "节 ";
 				return time;
