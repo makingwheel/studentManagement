@@ -26,8 +26,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public PageResult queryForStudent(CourseQueryParams queryParameters) {
 		PageResult pageResult = new PageResult();
-		List<CourseVo> courseVos = courseDaoImpl
-				.queryForStudent(queryParameters);
+		List<CourseVo> courseVos = courseDaoImpl.queryForStudent(queryParameters);
 		int count = courseDaoImpl.queryCountForStudent(queryParameters);
 		pageResult.setRows(courseVos);
 		pageResult.setTotal(count);
@@ -38,11 +37,28 @@ public class CourseServiceImpl implements CourseService {
 	public PageResult queryForTeacher(CourseQueryParams queryParameters) {
 		PageResult pageResult = new PageResult();
 		List<CourseVo> courseVos = new ArrayList<>();
+		for (Object[] objects : courseDaoImpl.queryForTeacher(queryParameters)) {
+			try {
+				courseVos.add(BeanUtils.counstruct(objects, CourseVo.class));
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		pageResult.setRows(courseVos);
+		pageResult.setTotal(courseDaoImpl.queryCountForTeacherCourse(queryParameters));
+		return pageResult;
+	}
+
+	@Override
+	public PageResult queryForTeacherCourse(CourseQueryParams queryParameters) {
+		PageResult pageResult = new PageResult();
+		List<CourseVo> courseVos = new ArrayList<>();
 		for (Object[] objects : courseDaoImpl.queryForTeacherCourse(queryParameters)) {
 			try {
 				courseVos.add(BeanUtils.counstruct(objects, CourseVo.class));
-			} catch (NoSuchMethodException | SecurityException
-					| InstantiationException | IllegalAccessException
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
 					| IllegalArgumentException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -73,15 +89,16 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public void updateResult(Long studentTeacherCourseId, double result) {
-		courseDaoImpl.findStudentTeacherCourse(studentTeacherCourseId).ifPresent(x->{
+		courseDaoImpl.findStudentTeacherCourse(studentTeacherCourseId).ifPresent(x -> {
 			x.setResult(result);
 			courseDaoImpl.updateStudentTeacherCourse(x);
 		});
-		
+
 	}
 
 	@Override
 	public List<Course> findAll() {
 		return courseDaoImpl.findAll().orElse(Collections.emptyList());
 	}
+
 }

@@ -20,7 +20,7 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="">您好: <em><c:out value="${user.name}" /></em></a></li>
-					<li><a href="">退出</a></li>
+					<li><a href="<c:url value="/sign/out.do" />">退出</a></li>
 				</ul>
 			</div>
 		</div>

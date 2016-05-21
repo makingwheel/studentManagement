@@ -13,6 +13,8 @@ public interface CourseService {
 	
 	public PageResult queryForTeacher(CourseQueryParams queryParameters);
 	
+	public PageResult queryForTeacherCourse(CourseQueryParams queryParameters);
+	
 	public void saveOrUpdate(Course course);
 
 	public Optional<Course> find(Long id);

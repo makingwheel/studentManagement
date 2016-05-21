@@ -18,7 +18,7 @@ import com.makingwheel.model.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/sign/")
-@SessionAttributes({ "user", "termId" })
+@SessionAttributes({"termId" })
 public class SignController {
 
 	private static final String BASIC_PATH = "/sign/";
@@ -41,10 +41,18 @@ public class SignController {
 			signService.queryByUserVo(userVo).ifPresent(user -> userVo.setName(user.getName()));
 			termService.queryCurrentTerm().ifPresent(x -> model.addAttribute("termId", x.getId()));
 			userVo.setPassword("");
-			model.addAttribute("user", userVo);
+			request.getSession().setAttribute("user", userVo);
+			model.put("user", userVo);
 			model.put(SUCCESS, true);
 		}
 		return new ModelAndView(new MappingJackson2JsonView(), model);
+	}
+
+	@RequestMapping(value = "out.do", method = RequestMethod.GET)
+	public ModelAndView signOut(ModelMap model, UserVo userVo, HttpServletRequest request) {
+		request.getSession().removeAttribute("user");
+		request.getSession().removeAttribute("termId");
+		return new ModelAndView("redirect:on.op", model);
 	}
 
 }

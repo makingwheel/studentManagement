@@ -57,7 +57,7 @@ public class CourseController {
 			@ModelAttribute(value = "user") UserVo user, CourseQueryParams queryParameters) {
 		teacherService.findByCount(user.getCount()).ifPresent(x -> queryParameters.setTeacherId(x.getId()));
 		queryParameters.setTermId(null != termId ? termId : (Long) request.getSession().getAttribute("termId"));
-		return courseService.queryForTeacher(queryParameters);
+		return courseService.queryForTeacherCourse(queryParameters);
 	}
 
 	@RequestMapping(value = "save.do", method = RequestMethod.GET)
