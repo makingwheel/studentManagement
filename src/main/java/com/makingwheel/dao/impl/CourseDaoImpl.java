@@ -127,6 +127,51 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 	}
 
 	@Override
+	public List<Object[]> queryForTeacherCourse(CourseQueryParams queryParameters) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select c.id, c.name course_name, c.message, ");
+		sql.append("t.name teacher_name, ttc.week, ttc.node, ttc.begin_week, ");
+		sql.append("ttc.end_week, ttc.place ");
+		sql.append("from sm_course c, ");
+		sql.append("sm_teacher_course tc, ");
+		sql.append("sm_teacher t, ");
+		sql.append("sm_time_teacher_course ttc ");
+		sql.append("where c.id = tc.course_id ");
+		sql.append("and tc.teacher_id = t.id ");
+		sql.append("and ttc.teacher_course_id = tc.id ");
+		sql.append("and tc.term_id = ? ");
+		sql.append("and t.id = ? ");
+		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
+		sqlQuery.setFirstResult(queryParameters.getFirstResult());
+		sqlQuery.setMaxResults(queryParameters.getLimit());
+		sqlQuery.setParameter(0, queryParameters.getTermId());
+		sqlQuery.setParameter(1, queryParameters.getTeacherId());
+		@SuppressWarnings("unchecked")
+		List<Object[]> results = sqlQuery.list();
+		return results;
+	}
+
+	@Override
+	public int queryCountForTeacherCourse(CourseQueryParams queryParameters) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select count(*) ");
+		sql.append("from sm_course c, ");
+		sql.append("sm_teacher_course tc, ");
+		sql.append("sm_teacher t, ");
+		sql.append("sm_time_teacher_course ttc ");
+		sql.append("where c.id = tc.course_id ");
+		sql.append("and tc.teacher_id = t.id ");
+		sql.append("and ttc.teacher_course_id = tc.id ");
+		sql.append("and tc.term_id = ? ");
+		sql.append("and t.id = ? ");
+		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
+		sqlQuery.setParameter(0, queryParameters.getTermId());
+		sqlQuery.setParameter(1, queryParameters.getTeacherId());
+		BigInteger total = (BigInteger) sqlQuery.uniqueResult();
+		return total.intValue();
+	}
+	
+	@Override
 	public List<Course> queryForManager(CourseQueryParams queryParameters) {
 		StringBuffer hql = new StringBuffer("from Course ");
 		Query query = sessionFactory.getCurrentSession().createQuery(hql.toString());

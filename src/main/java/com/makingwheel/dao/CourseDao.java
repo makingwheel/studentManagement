@@ -17,6 +17,10 @@ public interface CourseDao {
 	public List<Object[]> queryForTeacher(CourseQueryParams queryParameters);
 
 	public int queryCountForTeacher(CourseQueryParams queryParameters);
+	
+	public List<Object[]> queryForTeacherCourse(CourseQueryParams queryParameters);
+
+	public int queryCountForTeacherCourse(CourseQueryParams queryParameters);
 
 	public List<Course> queryForManager(CourseQueryParams queryParameters);
 

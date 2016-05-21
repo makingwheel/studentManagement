@@ -22,7 +22,7 @@ public class CourseVo {
 
 	private String place;
 	
-	private Double result;
+	private double result;
 	
 	private Long studentTeacherCourseId;
 	
@@ -78,7 +78,7 @@ public class CourseVo {
 	}
 	
 	@SortField(value = 10)
-	public void setResult(Double result) {
+	public void setResult(double result) {
 		this.result = result;
 	}
 	

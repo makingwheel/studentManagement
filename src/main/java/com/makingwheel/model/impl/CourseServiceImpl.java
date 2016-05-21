@@ -38,7 +38,7 @@ public class CourseServiceImpl implements CourseService {
 	public PageResult queryForTeacher(CourseQueryParams queryParameters) {
 		PageResult pageResult = new PageResult();
 		List<CourseVo> courseVos = new ArrayList<>();
-		for (Object[] objects : courseDaoImpl.queryForTeacher(queryParameters)) {
+		for (Object[] objects : courseDaoImpl.queryForTeacherCourse(queryParameters)) {
 			try {
 				courseVos.add(BeanUtils.counstruct(objects, CourseVo.class));
 			} catch (NoSuchMethodException | SecurityException
@@ -49,7 +49,7 @@ public class CourseServiceImpl implements CourseService {
 			}
 		}
 		pageResult.setRows(courseVos);
-		pageResult.setTotal(courseDaoImpl.queryCountForTeacher(queryParameters));
+		pageResult.setTotal(courseDaoImpl.queryCountForTeacherCourse(queryParameters));
 		return pageResult;
 	}
 	
