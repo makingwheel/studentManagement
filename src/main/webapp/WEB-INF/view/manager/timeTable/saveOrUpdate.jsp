@@ -53,7 +53,7 @@
 			<label for="" class="col-sm-2 control-label">班级：</label>
 			<div class="col-sm-5">
 				<!-- <input type="text" class="form-control" id="" name="email" value=""> -->
-				<select class="form-control" id="smClassId" name="smClassId">
+				<select class="form-control" id="classId" name="classId">
 					<c:forEach var="tem" items="${smClasses}">
 						<option value="${tem.id }" <c:if test="${timeTable.classId eq  tem.id}">selected="selected"</c:if>>
 							<c:out value="${tem.grade}"/>级

@@ -24,13 +24,13 @@ public class TimeTableListVo {
 
 	private String place;
 
+	private Long classId;
+
 	private String grade;
 
 	private String college;
 
 	private String smClass;
-
-	private Long classId;
 
 	public Long getTimeTeacherCourseId() {
 		return timeTeacherCourseId;
@@ -139,22 +139,23 @@ public class TimeTableListVo {
 	}
 
 	@SortField(value = 11)
+	public void setClassId(Long classId) {
+		this.classId = classId;
+	}
+
+	@SortField(value = 12)
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
-	@SortField(value = 12)
+	@SortField(value = 13)
 	public void setCollege(String college) {
 		this.college = college;
 	}
 
-	@SortField(value = 13)
+	@SortField(value = 14)
 	public void setSmClass(String smClass) {
 		this.smClass = smClass;
 	}
 
-	@SortField(value = 14)
-	public void setClassId(Long classId) {
-		this.classId = classId;
-	}
 }
