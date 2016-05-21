@@ -20,6 +20,7 @@ import com.makingwheel.dao.entity.TimeTeacherCourse;
 import com.makingwheel.model.CourseService;
 import com.makingwheel.model.TeacherCourseService;
 import com.makingwheel.model.TeacherService;
+import com.makingwheel.model.TermService;
 import com.makingwheel.model.TimeTableService;
 import com.makingwheel.model.vo.UserVo;
 
@@ -28,6 +29,7 @@ import com.makingwheel.model.vo.UserVo;
 @SessionAttributes({ "user" })
 public class CourseController {
 	private static final String BASIC_PATH = "/teacher/course/";
+	private static final String SUCCESS = "success";
 
 	@Autowired
 	private CourseService courseService;
@@ -40,6 +42,9 @@ public class CourseController {
 
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private TermService termService;
 
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) {
@@ -57,19 +62,23 @@ public class CourseController {
 
 	@RequestMapping(value = "save.do", method = RequestMethod.GET)
 	public ModelAndView save(ModelMap model) {
-
-		// TODO get term list
-		// TODO get course list
+		model.put("courses", courseService.findAll());
+		model.put("terms", termService.findAll());
 		return new ModelAndView(BASIC_PATH + "save", model);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "save.do", method = RequestMethod.POST)
-	public ModelAndView save(ModelMap model, TeacherCourse teacherCourse) {
+	public ModelAndView save(ModelMap model, @ModelAttribute(value = "user") UserVo user,TeacherCourse teacherCourse) {
+		teacherService.findByCount(user.getCount()).ifPresent(x -> teacherCourse.setTeacherId(x.getId()));
+		teacherCourse.setType(1);
+		teacherCourse.setStatus(1);
 		teacherCourseService.save(teacherCourse);
 		TimeTeacherCourse timeTeacherCourse = new TimeTeacherCourse();
-		timeTeacherCourse.setTeacherCourseId(timeTeacherCourse.getId());
+		timeTeacherCourse.setTeacherCourseId(teacherCourse.getId());
+		timeTeacherCourse.setStatus(1);
 		timeTableService.saveOrUpdateTimeTeacherCourse(timeTeacherCourse);
+		model.put(SUCCESS, true);
 		return new ModelAndView(new MappingJackson2JsonView(), model);
 	}
 }

@@ -50,7 +50,7 @@ $(function(){
 	});*/
 	
 	$('#add').on('click',function(){
-		window.location.href = $.rootPath + 'teacher/course/saveOrUpdate.do';
+		window.location.href = $.rootPath + 'teacher/course/save.do';
 	});
 	
 });

@@ -1,6 +1,7 @@
 package com.makingwheel.model.impl;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,11 @@ public class TermServiceImpl implements TermService {
 		pageResult.setRows(termDaoImpl.list(queryParams));
 		pageResult.setTotal(termDaoImpl.queryListCount(queryParams));
 		return pageResult;
+	}
+
+	@Override
+	public List<Term> findAll() {
+		return termDaoImpl.findAll().orElse(Collections.emptyList());
 	}
 
 }

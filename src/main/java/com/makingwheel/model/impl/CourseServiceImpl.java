@@ -2,6 +2,7 @@ package com.makingwheel.model.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,5 +78,10 @@ public class CourseServiceImpl implements CourseService {
 			courseDaoImpl.updateStudentTeacherCourse(x);
 		});
 		
+	}
+
+	@Override
+	public List<Course> findAll() {
+		return courseDaoImpl.findAll().orElse(Collections.emptyList());
 	}
 }

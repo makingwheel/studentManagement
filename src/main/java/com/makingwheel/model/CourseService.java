@@ -1,5 +1,6 @@
 package com.makingwheel.model;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.makingwheel.common.PageResult;
@@ -19,4 +20,6 @@ public interface CourseService {
 	public PageResult list(CourseQueryParams queryParams);
 	
 	public void updateResult(Long studentTeacherCourseId, double result);
+	
+	public List<Course> findAll();
 }

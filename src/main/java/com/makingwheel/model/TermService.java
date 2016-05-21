@@ -1,5 +1,6 @@
 package com.makingwheel.model;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.makingwheel.common.PageResult;
@@ -15,4 +16,6 @@ public interface TermService {
 	public Optional<Term> find(Long id);
 	
 	public PageResult list(QueryParameters queryParams);
+	
+	public List<Term> findAll();
 }
