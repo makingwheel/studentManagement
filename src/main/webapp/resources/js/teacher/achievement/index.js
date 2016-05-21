@@ -11,8 +11,8 @@ $(function(){
 			title: '课程信息',
 			field: 'name'
 		},{
-			title: '授课教师',
-			field: 'teacherName'
+			title: '学生姓名',
+			field: 'studentName'
 		},{
 			title: '成绩',
 			field: 'result'

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="v" tagdir="/WEB-INF/tags"%>
 <v:layout>
+	<h1 class="page-header">课程管理</h1>
 	<div class="btn-add">
 		<button type="button" id="add" class="btn btn-primary ">添加</button>
 	</div>
@@ -19,7 +20,6 @@
 			</div>
 		</form>
 	</div> -->
-	<h1 class="page-header">课程管理</h1>
 	<table id="courseTable"></table>
 </v:layout>
 <script src="/studentManagement/resources/js/teacher/course/index.js"></script>
