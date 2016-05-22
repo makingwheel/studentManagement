@@ -34,6 +34,7 @@ public class TeacherServiceImpl implements TeacherService {
 		if (newOne) {
 			User user = new User();
 			user.setCount(teacher.getCount());
+			user.setName(teacher.getName());
 			user.setPassword(DEFAUL_PASSWORD);
 			user.setType(UserType.TEACHER.getValue());
 			user.setStatus(1);

@@ -38,6 +38,7 @@ public class StudentServiceImpl implements StudentService {
 		if (newOne) {
 			User user = new User();
 			user.setCount(student.getCount());
+			user.setName(student.getName());
 			user.setPassword(DEFAUL_PASSWORD);
 			user.setType(UserType.STUDENT.getValue());
 			user.setStatus(1);
