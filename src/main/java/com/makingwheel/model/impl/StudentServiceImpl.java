@@ -11,21 +11,39 @@ import org.springframework.stereotype.Service;
 import com.makingwheel.common.BeanUtils;
 import com.makingwheel.common.CollectionUtils;
 import com.makingwheel.common.PageResult;
+import com.makingwheel.common.enums.UserType;
 import com.makingwheel.controller.queryParams.StudentQueryParams;
 import com.makingwheel.dao.entity.Student;
+import com.makingwheel.dao.entity.User;
 import com.makingwheel.dao.impl.StudentDaoImpl;
+import com.makingwheel.dao.impl.UserDaoImpl;
 import com.makingwheel.model.StudentService;
 import com.makingwheel.model.vo.StudentListVo;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
+	private static final String DEFAUL_PASSWORD = "123456";
+	
 	@Autowired
 	private StudentDaoImpl studentDaoImpl;
+	
+	@Autowired
+	private UserDaoImpl userDaoImpl;
 
 	@Override
 	public Student saveOrUpdate(Student student) {
-		return studentDaoImpl.saveOrUpdate(student);
+		boolean newOne = null == student.getId();
+		studentDaoImpl.saveOrUpdate(student);
+		if (newOne) {
+			User user = new User();
+			user.setCount(student.getCount());
+			user.setPassword(DEFAUL_PASSWORD);
+			user.setType(UserType.STUDENT.getValue());
+			user.setStatus(1);
+			userDaoImpl.save(user);
+		}
+		return student;
 	}
 
 	@Override

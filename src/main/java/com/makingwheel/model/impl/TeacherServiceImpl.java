@@ -8,20 +8,38 @@ import org.springframework.stereotype.Service;
 
 import com.makingwheel.common.CollectionUtils;
 import com.makingwheel.common.PageResult;
+import com.makingwheel.common.enums.UserType;
 import com.makingwheel.controller.queryParams.TeacherQueryParams;
 import com.makingwheel.dao.entity.Teacher;
+import com.makingwheel.dao.entity.User;
 import com.makingwheel.dao.impl.TeacherDaoImpl;
+import com.makingwheel.dao.impl.UserDaoImpl;
 import com.makingwheel.model.TeacherService;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
+	private static final String DEFAUL_PASSWORD = "123456";
+	
 	@Autowired
 	private TeacherDaoImpl teacherDaoImpl;
+	
+	@Autowired
+	private UserDaoImpl userDaoImpl;
 
 	@Override
 	public Teacher saveOrUpdate(Teacher teacher) {
-		return teacherDaoImpl.saveOrUpdate(teacher);
+		boolean newOne =  null == teacher.getId();
+		teacherDaoImpl.saveOrUpdate(teacher);
+		if (newOne) {
+			User user = new User();
+			user.setCount(teacher.getCount());
+			user.setPassword(DEFAUL_PASSWORD);
+			user.setType(UserType.TEACHER.getValue());
+			user.setStatus(1);
+			userDaoImpl.save(user);
+		}
+		return teacher;
 	}
 
 	@Override
