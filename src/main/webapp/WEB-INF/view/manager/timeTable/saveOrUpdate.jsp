@@ -55,7 +55,7 @@
 				<!-- <input type="text" class="form-control" id="" name="email" value=""> -->
 				<c:choose>
 					<c:when test="${! empty timeTable.classId}">
-						<input type="text" class="form-control" id="" name="place" 
+						<input type="text" class="form-control" id="" name="classId" 
 						value="${timeTable.grade}级${timeTable.college }${timeTable.smClass }" readonly="readonly">
 					</c:when>
 					<c:otherwise>

@@ -41,17 +41,12 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 	@Override
 	public int queryListCount(TimeTableQueryParams queryParams) {
 		StringBuffer sql = new StringBuffer("select count(*) ");
-		sql.append("from sm_teacher t, ")
-		.append("sm_teacher_course tc, ")
-		.append("sm_course c, ")
-		.append("sm_time_teacher_course ttc, ")
-		.append("sm_term term ")
-		.append("where tc.teacher_id = t.id ")
-		.append("and tc.course_id = c.id ")
-		.append("and tc.term_id = term.id ")
-		.append("and ttc.teacher_course_id = tc.id ")
-		;
-		BigInteger total = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql.toString()).uniqueResult();
+		sql.append("from sm_teacher t, ").append("sm_teacher_course tc, ").append("sm_course c, ")
+				.append("sm_time_teacher_course ttc, ").append("sm_term term ").append("where tc.teacher_id = t.id ")
+				.append("and tc.course_id = c.id ").append("and tc.term_id = term.id ")
+				.append("and ttc.teacher_course_id = tc.id ");
+		BigInteger total = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql.toString())
+				.uniqueResult();
 		return total.intValue();
 	}
 
@@ -59,21 +54,22 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 	public Object findByTimeTeacherCourseId(Long timeTeacherCourseId) {
 		StringBuffer sql = new StringBuffer("select ttc.id ttc_id, tc.id tc_id, ");
 		sql.append("c.name course_name, c.message, ")
-		.append("t.name teacher_name, ttc.week, ttc.node, ttc.begin_week, ")
-		.append("ttc.end_week, ttc.place, ttc.class_id class_id ")
-		.append("from sm_teacher t, ")
-		.append("sm_teacher_course tc, ")
-		.append("sm_course c, ")
-		.append("sm_time_teacher_course ttc, ")
-		.append("sm_term term ")
-		.append("where tc.teacher_id = t.id ")
-		.append("and tc.course_id = c.id ")
-		.append("and tc.term_id = term.id ")
-		.append("and ttc.teacher_course_id = tc.id ")
-		.append("and ttc.id = ? ")
-		;
+				.append("t.name teacher_name, ttc.week, ttc.node, ttc.begin_week, ")
+				.append("ttc.end_week, ttc.place, ttc.class_id class_id ").append("from sm_teacher t, ")
+				.append("sm_teacher_course tc, ").append("sm_course c, ").append("sm_time_teacher_course ttc, ")
+				.append("sm_term term ").append("where tc.teacher_id = t.id ").append("and tc.course_id = c.id ")
+				.append("and tc.term_id = term.id ").append("and ttc.teacher_course_id = tc.id ")
+				.append("and ttc.id = ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
 		sqlQuery.setParameter(0, timeTeacherCourseId);
 		return sqlQuery.uniqueResult();
+	}
+
+	@Override
+	public Object findClassIdByTimeTeacherCourseId(Long timeTeacherCourseId) {
+		StringBuffer sql = new StringBuffer("select class_id from sm_time_teacher_course ");
+		sql.append("where id = ?");
+		return  sessionFactory.getCurrentSession().createSQLQuery(sql.toString())
+				.setParameter(0, timeTeacherCourseId).uniqueResult();
 	}
 }

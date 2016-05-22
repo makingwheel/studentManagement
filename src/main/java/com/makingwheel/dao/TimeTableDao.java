@@ -11,4 +11,6 @@ public interface TimeTableDao {
 	public int queryListCount(TimeTableQueryParams queryParams);
 
 	public Object findByTimeTeacherCourseId(Long timeTeacherCourseId);
+	
+	public Object findClassIdByTimeTeacherCourseId(Long timeTeacherCourseId);
 }

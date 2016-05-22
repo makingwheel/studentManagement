@@ -2,6 +2,7 @@ package com.makingwheel.dao.impl;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,15 @@ public class StudentDaoImpl extends BasicDao<Student>implements StudentDao {
 		return students;
 	}
 
+	@Override
+	public Optional<List<Student>> findByClassId(Long classId) {
+		StringBuffer hql = new StringBuffer("from Student s ");
+		hql.append("where s.classId = ? ");
+		@SuppressWarnings("unchecked")
+		List<Student> students = (List<Student>) hibernateTemplate.find(hql.toString(), classId);
+		return Optional.ofNullable(students);
+	}
+	
 	@Override
 	public List<Object[]> list(StudentQueryParams queryParams) {
 		StringBuffer sql = new StringBuffer("select s.id, s.count, s.name, s.sex, ");

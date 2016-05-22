@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 import com.makingwheel.common.BeanUtils;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.TimeTableQueryParams;
+import com.makingwheel.dao.StudentTeacherCourseDaoImpl;
+import com.makingwheel.dao.entity.StudentTeacherCourse;
 import com.makingwheel.dao.entity.TimeTeacherCourse;
 import com.makingwheel.dao.impl.SMClassDaoImpl;
+import com.makingwheel.dao.impl.StudentDaoImpl;
 import com.makingwheel.dao.impl.TimeTableDaoImpl;
 import com.makingwheel.model.TimeTableService;
 import com.makingwheel.model.vo.TimeTableListVo;
@@ -22,9 +25,15 @@ public class TimeTableServiceImpl implements TimeTableService {
 
 	@Autowired
 	private TimeTableDaoImpl timeTableDaoImpl;
-	
+
 	@Autowired
 	private SMClassDaoImpl smClassDaoImpl;
+
+	@Autowired
+	private StudentDaoImpl studentDaoImpl;
+
+	@Autowired
+	private StudentTeacherCourseDaoImpl studentTeacherCourseDaoImpl;
 
 	@Override
 	public PageResult list(TimeTableQueryParams queryParams) {
@@ -39,10 +48,10 @@ public class TimeTableServiceImpl implements TimeTableService {
 				e.printStackTrace();
 			}
 		}
-		timeTableListVos.stream().forEach(x ->{
+		timeTableListVos.stream().forEach(x -> {
 			Long classId = x.getClassId();
 			if (null != classId) {
-				smClassDaoImpl.find(classId).ifPresent(smClass ->{
+				smClassDaoImpl.find(classId).ifPresent(smClass -> {
 					org.springframework.beans.BeanUtils.copyProperties(smClass, x);
 				});
 			}
@@ -72,6 +81,19 @@ public class TimeTableServiceImpl implements TimeTableService {
 
 	@Override
 	public void saveOrUpdateTimeTeacherCourse(TimeTeacherCourse timeTeacherCourse) {
+		Object result = timeTableDaoImpl.findClassIdByTimeTeacherCourseId(timeTeacherCourse.getId());
+		if (null == result) {
+			Long classId = timeTeacherCourse.getClassId();
+			studentDaoImpl.findByClassId(classId).ifPresent(students -> {
+				students.stream().forEach(student -> {
+					StudentTeacherCourse stc = new StudentTeacherCourse();
+					stc.setStudentId(student.getId());
+					stc.setTeacherCourseId(timeTeacherCourse.getTeacherCourseId());
+					stc.setStatus(1);
+					studentTeacherCourseDaoImpl.save(stc);
+				});
+			});
+		}
 		timeTableDaoImpl.saveOrUpdate(timeTeacherCourse);
 	}
 

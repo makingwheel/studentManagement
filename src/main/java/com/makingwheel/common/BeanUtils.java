@@ -21,8 +21,10 @@ public class BeanUtils {
 		}
 		fieldEntries = fieldEntries.stream().sorted((x, y) -> x.sort - y.sort).collect(Collectors.toList());
 		for (int i = 0, size = fieldEntries.size(), length = objects.length; i < size && i < length; i++) {
-			fieldEntries.get(i).method.invoke(t,
-					coverToType(objects[i], (fieldEntries.get(i).method.getParameterTypes())[0]));
+			if (null != objects[i]) {
+				fieldEntries.get(i).method.invoke(t,
+						coverToType(objects[i], (fieldEntries.get(i).method.getParameterTypes())[0]));
+			}
 		}
 		return t;
 	}
