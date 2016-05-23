@@ -53,7 +53,16 @@
 			</div>
 			<label for="" class="col-sm-2 control-label">班级：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="classId" value="${student.classId}">
+				<!-- <input type="text" class="form-control" id="" name="classId"> -->
+				<select  class="form-control" name="classId">
+					<c:forEach items="${smClasses }" var="tem">
+						<option value="${tem.id }" <c:if test="${tem.id eq  student.classId}">selected="selected"</c:if>>
+							<c:out value="${tem.grade}"/>级
+							<c:out value="${tem.college }" />
+							<c:out value="${tem.smClass }" />
+						</option>
+					</c:forEach>
+				</select>
 			</div>
 		</div>
 		<div class="form-group">

@@ -10,4 +10,6 @@ public interface SMClassDao {
 	public List<SMClass> list(QueryParameters queryParams);
 	
 	public int queryListCount(QueryParameters queryParams);
+	
+	public List<SMClass> findNolestThanCurrent(String year);
 }

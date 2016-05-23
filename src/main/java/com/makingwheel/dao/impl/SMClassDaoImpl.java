@@ -31,6 +31,15 @@ public class SMClassDaoImpl extends BasicDao<SMClass>implements SMClassDao {
 		return total.intValue();
 	}
 
+	@Override
+	public List<SMClass> findNolestThanCurrent(String year) {
+		StringBuffer hql = new StringBuffer("from SMClass s ");
+		hql.append("where s.grade >= ? ");
+		@SuppressWarnings("unchecked")
+		List<SMClass> smClasses =  (List<SMClass>) hibernateTemplate.find(hql.toString(), year);
+		return smClasses;
+	}
+
 	
 
 }

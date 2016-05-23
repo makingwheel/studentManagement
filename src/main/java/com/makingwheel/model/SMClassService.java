@@ -16,4 +16,6 @@ public interface SMClassService {
 	public PageResult list(QueryParameters queryParams);
 	
 	public List<SMClass> findAll();
+	
+	public List<SMClass> findNolestThanCurrent();
 }

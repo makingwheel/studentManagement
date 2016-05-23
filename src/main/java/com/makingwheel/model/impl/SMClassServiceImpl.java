@@ -1,5 +1,6 @@
 package com.makingwheel.model.impl;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +41,10 @@ public class SMClassServiceImpl implements SMClassService {
 	@Override
 	public List<SMClass> findAll() {
 		return smClassDaoImpl.findAll().orElse(Collections.emptyList());
+	}
+
+	@Override
+	public List<SMClass> findNolestThanCurrent() {
+		return smClassDaoImpl.findNolestThanCurrent(String.valueOf(LocalDate.now().getYear()));
 	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.StudentQueryParams;
 import com.makingwheel.dao.entity.Student;
+import com.makingwheel.model.SMClassService;
 import com.makingwheel.model.StudentService;
 
 @Controller
@@ -26,9 +27,13 @@ public class StudentManagerController {
 
 	private final static String BASIC_PATH = "/manager/student/";
 	private final static String SUCCESS = "success";
+	
 	@Autowired
 	private StudentService studentService;
 
+	@Autowired
+	private SMClassService smClassService;
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,6 +54,8 @@ public class StudentManagerController {
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
 	public ModelAndView saveOrUpdate(ModelMap model, Long studentId) {
+		model.put("smClasses", smClassService.findNolestThanCurrent());
+		model.put("smClasses", smClassService.findAll());
 		model.put("student", studentId != null ? studentService.find(studentId).orElse(new Student()) : new Student());
 		return new ModelAndView(BASIC_PATH + "saveOrUpdate", model);
 	}
