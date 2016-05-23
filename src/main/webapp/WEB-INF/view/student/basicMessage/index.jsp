@@ -52,7 +52,7 @@
 			</div>
 			<label for="" class="col-sm-2 control-label">班级：</label>
 			<div class="col-sm-3">
-				<input type="text" value="${smClass.grade + '级' + smClass.college + smClass.smClass}">
+				<input type="text" class="form-control" value="${smClass.grade}级${smClass.college}${smClass.smClass}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
