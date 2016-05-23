@@ -52,7 +52,7 @@
 			</div>
 			<label for="" class="col-sm-2 control-label">班级：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" value="${student.classId}">
+				<input type="text" value="${smClass.grade + '级' + smClass.college + smClass.smClass}">
 			</div>
 		</div>
 		<div class="form-group">

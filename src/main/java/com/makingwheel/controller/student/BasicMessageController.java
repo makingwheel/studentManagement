@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.makingwheel.dao.entity.Student;
+import com.makingwheel.model.SMClassService;
 import com.makingwheel.model.StudentService;
 import com.makingwheel.model.vo.UserVo;
 
@@ -22,10 +23,15 @@ public class BasicMessageController {
 
 	@Autowired
 	private StudentService studentServiceImpl;
+	
+	@Autowired
+	private SMClassService smClassService;
 
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model, @ModelAttribute(value = "user") UserVo user) {
-		model.put("student", studentServiceImpl.findByCount(user.getCount()).orElse(new Student()));
+		Student student = studentServiceImpl.findByCount(user.getCount()).orElse(new Student());
+		model.put("smClass", smClassService.find(student.getClassId()));
+		model.put("student", student);
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 }
