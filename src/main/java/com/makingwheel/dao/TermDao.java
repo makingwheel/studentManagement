@@ -12,4 +12,6 @@ public interface TermDao {
 	public List<Term> list(QueryParameters queryParams);
 	
 	public int queryListCount(QueryParameters queryParams);
+	
+	public List<Term> findTermForStudent(Long studentId);
 }

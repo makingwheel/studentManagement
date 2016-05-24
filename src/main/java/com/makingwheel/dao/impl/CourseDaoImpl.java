@@ -23,6 +23,7 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 
 	@Override
 	public List<CourseVo> queryForStudent(CourseQueryParams queryParameters) {
+		Long termId = queryParameters.getTermId();
 		List<CourseVo> courseVos = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select c.id, c.name courseName, c.message, ");
@@ -37,13 +38,16 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 		sql.append("and tc.teacher_id = t.id ");
 		sql.append("and ttc.teacher_course_id = tc.id ");
 		sql.append("and stc.teacher_course_id = tc.id ");
-		sql.append("and tc.term_id = ? ");
 		sql.append("and stc.student_id = ? ");
+		if (null != termId)
+			sql.append("and tc.term_id = ? ");
+		sql.append("order by tc.term_id desc ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
 		sqlQuery.setFirstResult(queryParameters.getFirstResult());
 		sqlQuery.setMaxResults(queryParameters.getLimit());
-		sqlQuery.setParameter(0, queryParameters.getTermId());
-		sqlQuery.setParameter(1, queryParameters.getStudentId());
+		sqlQuery.setParameter(0, queryParameters.getStudentId());
+		if (null != termId)
+			sqlQuery.setParameter(1, queryParameters.getTermId());
 		@SuppressWarnings("unchecked")
 		List<Object[]> results = sqlQuery.list();
 		for (Object[] result : results) {
@@ -59,16 +63,25 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 
 	@Override
 	public Integer queryCountForStudent(CourseQueryParams queryParameters) {
+		Long termId = queryParameters.getTermId();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select count(*) ").append("from sm_course c, ").append("sm_teacher_course tc, ")
-				.append("sm_teacher t, ").append("sm_time_teacher_course ttc, ")
-				.append("sm_student_teacher_course stc ").append("where c.id = tc.course_id ")
-				.append("and tc.teacher_id = t.id ").append("and ttc.teacher_course_id = tc.id ")
-				.append("and stc.teacher_course_id = tc.id ").append("and tc.term_id = ? ")
-				.append("and stc.student_id = ? ");
+		sql.append("select count(*) ");
+		sql.append("from sm_course c, ");
+		sql.append("sm_teacher_course tc, ");
+		sql.append("sm_teacher t, ");
+		sql.append("sm_time_teacher_course ttc, ");
+		sql.append("sm_student_teacher_course stc ");
+		sql.append("where c.id = tc.course_id ");
+		sql.append("and tc.teacher_id = t.id ");
+		sql.append("and ttc.teacher_course_id = tc.id ");
+		sql.append("and stc.teacher_course_id = tc.id ");
+		sql.append("and stc.student_id = ? ");
+		if (null != termId)
+			sql.append("and tc.term_id = ? ");
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
-		sqlQuery.setParameter(0, queryParameters.getTermId());
-		sqlQuery.setParameter(1, queryParameters.getStudentId());
+		sqlQuery.setParameter(0, queryParameters.getStudentId());
+		if (null != termId)
+			sqlQuery.setParameter(1, queryParameters.getTermId());
 		BigInteger count = (BigInteger) sqlQuery.uniqueResult();
 		return count.intValue();
 	}
@@ -170,7 +183,7 @@ public class CourseDaoImpl extends BasicDao<Course>implements CourseDao {
 		BigInteger total = (BigInteger) sqlQuery.uniqueResult();
 		return total.intValue();
 	}
-	
+
 	@Override
 	public List<Course> queryForManager(CourseQueryParams queryParameters) {
 		StringBuffer hql = new StringBuffer("from Course ");

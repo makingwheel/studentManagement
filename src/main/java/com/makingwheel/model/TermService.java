@@ -18,4 +18,6 @@ public interface TermService {
 	public PageResult list(QueryParameters queryParams);
 	
 	public List<Term> findAll();
+	
+	public List<Term> findTremForStudent(Long studentId);
 }

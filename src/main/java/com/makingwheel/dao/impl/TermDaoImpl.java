@@ -41,4 +41,13 @@ public class TermDaoImpl extends BasicDao<Term>implements TermDao {
 		Long total = (Long) sessionFactory.getCurrentSession().createQuery(hql.toString()).uniqueResult();
 		return total.intValue();
 	}
+
+	@Override
+	public List<Term> findTermForStudent(Long studentId) {
+		StringBuffer hql = new StringBuffer("from Term t where year(t.year) >= ");
+		hql.append("(select c.grade from Student s , SMClass c where s.classId = c.id  and s.id = ? ) ");
+		@SuppressWarnings("unchecked")
+		List<Term> result = (List<Term>) hibernateTemplate.find(hql.toString(), studentId);
+		return result;
+	}
 }

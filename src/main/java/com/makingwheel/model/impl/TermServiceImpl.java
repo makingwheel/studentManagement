@@ -59,4 +59,9 @@ public class TermServiceImpl implements TermService {
 		return termDaoImpl.findAll().orElse(Collections.emptyList());
 	}
 
+	@Override
+	public List<Term> findTremForStudent(Long studentId) {
+		return termDaoImpl.findTermForStudent(studentId);
+	}
+
 }
