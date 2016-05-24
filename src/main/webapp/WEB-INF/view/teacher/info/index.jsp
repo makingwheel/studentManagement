@@ -72,4 +72,5 @@
 		</div>
 	</form>
 </v:layout>
+<script src="/studentManagement/resources/js/lib/bootstrapQ/bootstrapQ.min.js"></script>
 <script src="/studentManagement/resources/js/teacher/info/info.js"></script>

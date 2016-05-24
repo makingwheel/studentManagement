@@ -36,9 +36,18 @@ $(function(){
 			$('#teacherForm').ajaxSubmit({
 				success:function(data){
 					if(data.success){
-						window.location.href = $.rootPath + "teacher/info/index.do";
+						//window.location.href = $.rootPath + "teacher/info/index.do";
+						bootstrapQ.msg({
+						    msg  : '修改成功！（3秒消失）',
+						    type : 'success',
+						    time : 3000
+						});
 					} else {
-						
+						bootstrapQ.msg({
+						    msg  : '系统错误请联系管理员！（3秒消失）',
+						    type : 'danger',
+						    time : 3000
+						});
 					}
 				}
 			});
