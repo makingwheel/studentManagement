@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.TimeTableQueryParams;
+import com.makingwheel.dao.entity.SMClass;
 import com.makingwheel.dao.entity.TimeTeacherCourse;
 import com.makingwheel.model.SMClassService;
 import com.makingwheel.model.TimeTableService;
@@ -31,10 +32,10 @@ public class TimeTableManagerController {
 
 	@Autowired
 	private TimeTableService timeTableService;
-	
+
 	@Autowired
 	private SMClassService smClassService;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,9 +56,15 @@ public class TimeTableManagerController {
 
 	@RequestMapping(value = "saveOrUpdate.do", method = RequestMethod.GET)
 	public ModelAndView saveOrUpdate(ModelMap model, Long timeTeacherCourseId) {
-		model.put("timeTable",
-				timeTableService.findByTimeTeacherCourseId(timeTeacherCourseId).orElse(new TimeTableListVo()));
-		model.put("smClasses", smClassService.findAll());
+		TimeTableListVo timeTableListVo = timeTableService.findByTimeTeacherCourseId(timeTeacherCourseId)
+				.orElse(new TimeTableListVo());
+		Long smClassId = timeTableListVo.getClassId();
+		if (null != smClassId) {
+			model.put("smClass", smClassService.find(smClassId).orElse(new SMClass()));
+		}else{
+			model.put("smClasses", smClassService.findAll());
+		}
+		model.put("timeTable", timeTableListVo);
 		return new ModelAndView(BASIC_PATH + "saveOrUpdate", model);
 	}
 
