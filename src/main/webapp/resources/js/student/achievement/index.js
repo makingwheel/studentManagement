@@ -1,5 +1,4 @@
 $(function(){
-	console.log("rootPath : " + $.rootPath);
 	$('#achievement').bootstrapTable({
 		url: $.rootPath + "student/achievement/list.do",
 		pagination: true,
@@ -34,8 +33,13 @@ $(function(){
 			}
 		}*/],
 		queryParams: function(params) {
+			params.termId = $('#termId').val();
 			return params;
 		}
+	});
+	
+	$('#search').on('click', function(){
+		$('#achievement').bootstrapTable('refresh');
 	});
 });
 

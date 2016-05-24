@@ -14,32 +14,37 @@ import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.model.CourseService;
 import com.makingwheel.model.StudentService;
+import com.makingwheel.model.TermService;
 import com.makingwheel.model.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/student/achievement/")
-@SessionAttributes({ "user", "termId" })
+@SessionAttributes({ "user" })
 public class AchievementController {
 
 	private static final String BASIC_PATH = "/student/achievement/";
 
 	@Autowired
 	private CourseService courseService;
-	
+
 	@Autowired
 	private StudentService studentService;
 
+	@Autowired
+	private TermService termService;
+
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
-	public ModelAndView index(ModelMap model) {
+	public ModelAndView index(ModelMap model, @ModelAttribute(value = "user") UserVo user) {
+		studentService.findByCount(user.getCount())
+				.ifPresent(x -> model.put("terms", termService.findTremForStudent(x.getId())));
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public PageResult list(ModelMap model, @ModelAttribute(value = "termId") Long termId,
-			@ModelAttribute(value = "user") UserVo user, CourseQueryParams queryParameters) {
+	public PageResult list(ModelMap model, @ModelAttribute(value = "user") UserVo user,
+			CourseQueryParams queryParameters) {
 		studentService.findByCount(user.getCount()).ifPresent(x -> queryParameters.setStudentId(x.getId()));
-		queryParameters.setTermId(termId);
 		return courseService.queryForStudent(queryParameters);
 	}
 }
