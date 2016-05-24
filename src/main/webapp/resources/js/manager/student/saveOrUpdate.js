@@ -1,7 +1,24 @@
 $(function(){
 	$('#studentForm').validate({
 		rules: {
+			name: {
+				required: true
+			},
 			count: {
+				required: true
+			},
+			sex: {
+				required: true
+			},
+			nation: {
+				required: true
+			},
+			birthday: {
+				required: true
+			},
+			placeOfOrigin: {
+				required: true
+			},degree: {
 				required: true
 			}
 		}/*,
@@ -32,5 +49,14 @@ $(function(){
 	
 	$('#cancle').on('click', function(){
 		window.location.href = $.rootPath + 'manager/student/index.do';
+	});
+	
+	$('#birthday').datetimepicker({
+		format : 'yyyy-mm-dd ',
+		startView : 2,
+		maxView : 2,
+		minView : 2,
+		todayBtn : true,
+		autoclose: true
 	});
 });

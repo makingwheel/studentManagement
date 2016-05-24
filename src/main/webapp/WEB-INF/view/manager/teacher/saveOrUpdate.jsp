@@ -11,7 +11,7 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" name="name" value="${teacher.name}">
 			</div>
-			<label for="" class="col-sm-2 control-label">学号：</label>
+			<label for="" class="col-sm-2 control-label">教师号：</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" name="count" value="${teacher.count}">
 			</div>
@@ -51,10 +51,10 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="" name="email" value="${teacher.email}">
 			</div>
-			<%-- <label for="" class="col-sm-2 control-label">班级：</label>
+		<label for="" class="col-sm-2 control-label">等级：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="classId" value="${teacher.classId}">
-			</div> --%>
+				<input type="text" class="form-control" id="" name="level" value="${teacher.level}">
+			</div>
 		</div>
 		<div class="form-group">
 			<%-- <label for="" class="col-sm-2 control-label">学位：</label>

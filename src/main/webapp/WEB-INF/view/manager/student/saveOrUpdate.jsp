@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="v" tagdir="/WEB-INF/tags"%>
 <v:layout>
 	<h1 class="page-header">学生信息管理</h1>
@@ -29,7 +30,8 @@
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">出生日期：</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="" name="birthday" value="${student.birthday}">
+				<input type="text" class="form-control" id="birthday" name="birthday" 
+				value="<fmt:formatDate value="${student.birthday}" pattern="yyyy-MM-dd"/>" readonly="readonly">
 			</div>
 			<label for="" class="col-sm-2 control-label">籍贯：</label>
 			<div class="col-sm-3">
