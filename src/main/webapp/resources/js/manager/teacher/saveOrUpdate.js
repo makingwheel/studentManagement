@@ -1,7 +1,22 @@
 $(function(){
 	$('#teacherForm').validate({
 		rules: {
+			name: {
+				required: true
+			},
 			count: {
+				required: true
+			},
+			sex: {
+				required: true
+			},
+			nation: {
+				required: true
+			},
+			birthday: {
+				required: true
+			},
+			placeOfOrigin: {
 				required: true
 			}
 		}/*,
