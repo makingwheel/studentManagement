@@ -11,7 +11,7 @@
 				<div class="col-xs-2">
 					<!-- <input type="text" class="form-control" id="termId" /> -->
 					<select class="form-control" id="termId">
-						<option>--请选择--</option>
+						<option value="">--请选择--</option>
 						<c:forEach var="term" items="${terms}">
 							<option value="${term.id}">
 								<fmt:formatDate value="${term.year}" pattern="yyyy"/>

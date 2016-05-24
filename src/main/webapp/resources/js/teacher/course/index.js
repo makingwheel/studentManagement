@@ -45,17 +45,19 @@ $(function(){
 			}
 		}*/],
 		queryParams: function(params) {
+			params.termId = $('#termId').val();
 			return params;
 		}
 	});
 	
-	/*$('#search').on('click',function(){
-		$('#teacherTable').bootstrapTable('refresh');
-	});*/
+	$('#search').on('click', function(){
+		$('#courseTable').bootstrapTable('refresh');
+	});
 	
 	$('#add').on('click',function(){
 		window.location.href = $.rootPath + 'teacher/course/save.do';
 	});
+	
 	
 });
 

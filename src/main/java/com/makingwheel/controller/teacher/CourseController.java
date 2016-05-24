@@ -1,6 +1,7 @@
 package com.makingwheel.controller.teacher;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.CourseQueryParams;
 import com.makingwheel.dao.entity.TeacherCourse;
+import com.makingwheel.dao.entity.Term;
 import com.makingwheel.dao.entity.TimeTeacherCourse;
 import com.makingwheel.model.CourseService;
 import com.makingwheel.model.TeacherCourseService;
@@ -42,21 +44,22 @@ public class CourseController {
 
 	@Autowired
 	private TeacherService teacherService;
-	
+
 	@Autowired
 	private TermService termService;
 
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) {
+		model.put("terms", termService.findAll().stream().sorted(Comparator.comparing(Term::getId).reversed())
+				.collect(Collectors.toList()));
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
-	public PageResult list(ModelMap model, HttpServletRequest request, Long termId,
-			@ModelAttribute(value = "user") UserVo user, CourseQueryParams queryParameters) {
+	public PageResult list(ModelMap model, @ModelAttribute(value = "user") UserVo user,
+			CourseQueryParams queryParameters) {
 		teacherService.findByCount(user.getCount()).ifPresent(x -> queryParameters.setTeacherId(x.getId()));
-		queryParameters.setTermId(null != termId ? termId : (Long) request.getSession().getAttribute("termId"));
 		return courseService.queryForTeacherCourse(queryParameters);
 	}
 
@@ -69,7 +72,7 @@ public class CourseController {
 
 	@ResponseBody
 	@RequestMapping(value = "save.do", method = RequestMethod.POST)
-	public ModelAndView save(ModelMap model, @ModelAttribute(value = "user") UserVo user,TeacherCourse teacherCourse) {
+	public ModelAndView save(ModelMap model, @ModelAttribute(value = "user") UserVo user, TeacherCourse teacherCourse) {
 		teacherService.findByCount(user.getCount()).ifPresent(x -> teacherCourse.setTeacherId(x.getId()));
 		teacherCourse.setType(1);
 		teacherCourse.setStatus(1);
