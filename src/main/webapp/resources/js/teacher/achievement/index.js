@@ -43,8 +43,13 @@ $(function(){
 			}
 		}*/],
 		queryParams: function(params) {
+			params.termId = $('#termId').val();
 			return params;
 		}
+	});
+	
+	$('#search').on('click', function(){
+		$('#achievement').bootstrapTable('refresh');
 	});
 });
 
