@@ -33,4 +33,13 @@ $(function(){
 	$('#cancle').on('click', function(){
 		window.location.href = $.rootPath + 'manager/teacher/index.do';
 	});
+	
+	$('#birthday').datetimepicker({
+		format : 'yyyy-mm-dd ',
+		startView : 2,
+		maxView : 2,
+		minView : 2,
+		todayBtn : true,
+		autoclose: true
+	});
 });
