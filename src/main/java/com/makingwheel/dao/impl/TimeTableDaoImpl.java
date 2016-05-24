@@ -16,6 +16,7 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 
 	@Override
 	public List<Object[]> list(TimeTableQueryParams queryParams) {
+		Long termId = queryParams.getTermId();
 		StringBuffer sql = new StringBuffer("select ttc.id ttc_id, tc.id tc_id, ");
 		sql.append("c.name course_name, c.message, ");
 		sql.append("t.name teacher_name, ttc.week, ttc.node, ttc.begin_week, ");
@@ -29,10 +30,13 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 		sql.append("and tc.course_id = c.id ");
 		sql.append("and tc.term_id = term.id ");
 		sql.append("and ttc.teacher_course_id = tc.id ");
+		if (null != termId) sql.append("and term.id = ? ");
+		sql.append("order by tc.term_id desc ");
 		;
 		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
 		sqlQuery.setFirstResult(queryParams.getFirstResult());
 		sqlQuery.setMaxResults(queryParams.getLimit());
+		if (null != termId) sqlQuery.setParameter(0, termId);
 		@SuppressWarnings("unchecked")
 		List<Object[]> list = sqlQuery.list();
 		return list;
@@ -40,13 +44,16 @@ public class TimeTableDaoImpl extends BasicDao<TimeTeacherCourse>implements Time
 
 	@Override
 	public int queryListCount(TimeTableQueryParams queryParams) {
+		Long termId = queryParams.getTermId();
 		StringBuffer sql = new StringBuffer("select count(*) ");
 		sql.append("from sm_teacher t, ").append("sm_teacher_course tc, ").append("sm_course c, ")
 				.append("sm_time_teacher_course ttc, ").append("sm_term term ").append("where tc.teacher_id = t.id ")
 				.append("and tc.course_id = c.id ").append("and tc.term_id = term.id ")
 				.append("and ttc.teacher_course_id = tc.id ");
-		BigInteger total = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql.toString())
-				.uniqueResult();
+		if (null != termId) sql.append("and term.id = ? ");
+		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(sql.toString());
+		if (null != termId)sqlQuery.setParameter(0, termId);
+		BigInteger total = (BigInteger) sqlQuery.uniqueResult();
 		return total.intValue();
 	}
 

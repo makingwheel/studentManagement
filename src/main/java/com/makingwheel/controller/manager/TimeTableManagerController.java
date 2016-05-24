@@ -1,7 +1,9 @@
 package com.makingwheel.controller.manager;
 
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,8 +20,10 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.makingwheel.common.PageResult;
 import com.makingwheel.controller.queryParams.TimeTableQueryParams;
 import com.makingwheel.dao.entity.SMClass;
+import com.makingwheel.dao.entity.Term;
 import com.makingwheel.dao.entity.TimeTeacherCourse;
 import com.makingwheel.model.SMClassService;
+import com.makingwheel.model.TermService;
 import com.makingwheel.model.TimeTableService;
 import com.makingwheel.model.vo.TimeTableListVo;
 
@@ -35,6 +39,9 @@ public class TimeTableManagerController {
 
 	@Autowired
 	private SMClassService smClassService;
+	
+	@Autowired
+	private TermService termService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -45,6 +52,8 @@ public class TimeTableManagerController {
 
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) {
+		model.put("terms", termService.findAll().stream().sorted(Comparator.comparing(Term::getId).reversed())
+				.collect(Collectors.toList()));
 		return new ModelAndView(BASIC_PATH + "index", model);
 	}
 
